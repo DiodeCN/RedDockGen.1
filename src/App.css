@@ -1,0 +1,45 @@
+@font-face {
+	font-family: 'AllFont';
+	src: url('AlibabaPuHuiTi-2-85-Bold.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+  }
+
+*:not([class*=icon]):not(i) {
+	font-family: AllFont !important
+}
+
+
+body
+{
+
+background-repeat:no-repeat;
+background-size: cover;
+background-position:left top;
+
+}
+
+
+
+a
+{
+    color:#000000!important;
+    font-weight:bold;
+}
+
+h1
+{
+    color:#000000!important;
+    font-weight:bold;
+}
+h6
+{
+    color:#000000!important;
+    font-weight:bold;
+}
+h5
+{
+    color:#005c40!important;
+    font-weight:bold;
+}
