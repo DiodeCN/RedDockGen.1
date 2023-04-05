@@ -1,12 +1,12 @@
 // ==============================|| THEME CONFIG  ||============================== //
 
 const config = {
-    defaultPath: '/dashboard/default',
+    defaultPath: '/',
     fontFamily: `'Public Sans', sans-serif`,
     i18n: 'en',
     miniDrawer: false,
     container: true,
-    mode: 'light',
+    mode: 'dark',
     presetColor: 'default',
     themeDirection: 'ltr'
 };
