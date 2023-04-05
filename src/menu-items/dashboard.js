@@ -19,7 +19,7 @@ const dashboard = {
             id: 'main',
             title: '主页',
             type: 'item',
-            url: '/main',
+            url: '/',
             icon: icons.StorefrontOutlined,
             breadcrumbs: false
         },
