@@ -76,7 +76,6 @@
     "devDependencies": {
         "@babel/core": "^7.19.1",
         "@babel/eslint-parser": "^7.19.1",
-        "eslint": "^8.23.1",
         "eslint-config-airbnb-typescript": "^17.0.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-config-react-app": "7.0.1",
