@@ -7,6 +7,7 @@ import MainLayout from 'layout/MainLayout';
 // render - main
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 const ReleasePage = Loadable(lazy(() => import('pages/moneycenter/ReleasePage')));
+const HistoryPage = Loadable(lazy(() => import('pages/moneycenter/HistoryPage')));
 
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
@@ -39,6 +40,14 @@ const MainRoutes = {
                     element: <DashboardDefault />
                 }
             ]
+        },
+        {
+            path: 'release',
+            element: <ReleasePage />
+        },
+        {
+            path: 'history',
+            element: <HistoryPage />         
         },
         {
             path: 'sample-page',

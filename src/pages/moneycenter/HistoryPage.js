@@ -4,14 +4,14 @@ import { Typography } from '@mui/material';
 // project import
 import MainCard from 'components/MainCard';
 
-// ==============================|| Release PAGE ||============================== //
+// ==============================|| HistoryPage PAGE ||============================== //
 
-const ReleasePage = () => (
-    <MainCard title="Release Page">
+const HistoryPage = () => (
+    <MainCard title="History Page">
         <Typography variant="body2">
-            好好好
+        好好好
         </Typography>
     </MainCard>
 );
 
-export default ReleasePage;
+export default HistoryPage;
