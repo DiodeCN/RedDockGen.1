@@ -1,22 +1,22 @@
 // assets
-import { LoginOutlined, ProfileOutlined } from '@ant-design/icons';
+import { LockOutlined, PersonAddOutlined } from '@mui/icons-material';
 
 // icons
 const icons = {
-    LoginOutlined,
-    ProfileOutlined
+    LoginOutlined: LockOutlined,
+    ProfileOutlined: PersonAddOutlined
 };
 
 // ==============================|| MENU ITEMS - EXTRA PAGES ||============================== //
 
 const pages = {
     id: 'authentication',
-    title: 'Authentication',
+    title: '用户',
     type: 'group',
     children: [
         {
             id: 'login1',
-            title: 'Login',
+            title: '登录',
             type: 'item',
             url: '/login',
             icon: icons.LoginOutlined,
@@ -24,7 +24,7 @@ const pages = {
         },
         {
             id: 'register1',
-            title: 'Register',
+            title: '注册',
             type: 'item',
             url: '/register',
             icon: icons.ProfileOutlined,
