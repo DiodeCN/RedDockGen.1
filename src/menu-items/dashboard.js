@@ -1,11 +1,12 @@
 // assets
-import { PublishOutlined, HistoryOutlined, StorefrontOutlined } from '@mui/icons-material';
+import { PublishOutlined, HistoryOutlined, StorefrontOutlined, BookmarkOutlined } from '@mui/icons-material';
 
 // icons
 const icons = {
     StorefrontOutlined,
     PublishOutlined,
-    HistoryOutlined
+    HistoryOutlined,
+    BookmarkOutlined // 添加了 BookmarkOutlined 图标
 };
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
@@ -33,12 +34,20 @@ const dashboard = {
         },
         {
             id: 'history',
-            title: '历史交易',
+            title: '记录',
             type: 'item',
             url: '/history',
             icon: icons.HistoryOutlined,
             breadcrumbs: false
-        }
+        },
+        {
+            id: 'likes',
+            title: '收藏',
+            type: 'item',
+            url: '/likes',
+            icon: icons.BookmarkOutlined, // 使用 BookmarkOutlined 图标
+            breadcrumbs: false
+        },
     ]
 };
 
