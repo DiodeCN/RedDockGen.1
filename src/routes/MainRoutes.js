@@ -8,6 +8,7 @@ import MainLayout from 'layout/MainLayout';
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 const ReleasePage = Loadable(lazy(() => import('pages/moneycenter/ReleasePage')));
 const HistoryPage = Loadable(lazy(() => import('pages/moneycenter/HistoryPage')));
+const LikesPage = Loadable(lazy(() => import('pages/moneycenter/LikesPage')));
 
 // render - sample page
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
@@ -48,6 +49,10 @@ const MainRoutes = {
         {
             path: 'history',
             element: <HistoryPage />         
+        },
+        {
+            path: 'likes',
+            element: <LikesPage />         
         },
         {
             path: 'sample-page',
