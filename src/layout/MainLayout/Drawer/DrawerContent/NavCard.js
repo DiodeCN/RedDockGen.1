@@ -16,7 +16,7 @@ const NavCard = () => (
                 <Typography variant="h3">码头红书</Typography>
             </Stack>
             <AnimateButton>
-                <Button component={Link} target="_blank" href="https://elmcose.cn/" variant="contained" color="success" size="small">
+                <Button component={Link} target="_blank" href="https://elmcose.cn/" variant="contained"  size="small">
                     爱来自榆法糖
                 </Button>
             </AnimateButton>
