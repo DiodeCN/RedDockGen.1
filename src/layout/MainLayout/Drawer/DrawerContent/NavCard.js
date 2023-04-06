@@ -13,7 +13,7 @@ const NavCard = () => (
     <MainCard sx={{ bgcolor: 'grey.50', m: 3 }}>
         <Stack alignItems="center" spacing={2.5}>
             <Stack alignItems="center">
-                <Typography variant="h3">红书码头</Typography>
+                <Typography variant="h3">码头红书</Typography>
             </Stack>
             <AnimateButton>
                 <Button component={Link} target="_blank" href="https://elmcose.cn/" variant="contained" color="success" size="small">

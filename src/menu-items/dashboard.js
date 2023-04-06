@@ -13,7 +13,7 @@ const icons = {
 
 const dashboard = {
     id: 'dash-main',
-    title: '交易中心',
+    title: '广场',
     type: 'group',
     children: [
         {
