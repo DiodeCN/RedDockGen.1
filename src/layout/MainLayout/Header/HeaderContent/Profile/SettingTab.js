@@ -3,9 +3,7 @@ import { useState } from 'react';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-
-// assets
-import { CommentOutlined, LockOutlined, QuestionCircleOutlined, UserOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { HelpOutline, LockOutlined, UserOutlined, UnorderedListOutlined, Favorite } from '@mui/icons-material';
 
 // ==============================|| HEADER PROFILE - SETTING TAB ||============================== //
 
@@ -18,37 +16,27 @@ const SettingTab = () => {
     };
 
     return (
-        <List component="nav" sx={{ p: 0, '& .MuiListItemIcon-root': { minWidth: 32, color: theme.palette.grey[500] } }}>
+        <List component="nav" sx={{ p: 0, '& .MuiListItemIcon-root': { minWidth: 32 } }}>
             <ListItemButton selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}>
-                <ListItemIcon>
-                    <QuestionCircleOutlined />
+                <ListItemIcon sx={{ color: '#4A90E2' }}>
+                    <HelpOutline />
                 </ListItemIcon>
-                <ListItemText primary="Support" />
+                <ListItemText primary="暂时未想好..." />
+            </ListItemButton>
+            {/*
+            <ListItemButton selected={selectedIndex === 1} onClick={(event) => handleListItemClick(event, 1)}>
+                <ListItemIcon sx={{ color: '#FFFF00' }}>
+                    <Favorite />
+                </ListItemIcon>
+                <ListItemText primary="We stand with ukraine" />
             </ListItemButton>
             <ListItemButton selected={selectedIndex === 1} onClick={(event) => handleListItemClick(event, 1)}>
-                <ListItemIcon>
-                    <UserOutlined />
+                <ListItemIcon sx={{ color: '#FF69B4' }}>
+                    <Favorite />
                 </ListItemIcon>
-                <ListItemText primary="Account Settings" />
+                <ListItemText primary="We stand with LGBT" />
             </ListItemButton>
-            <ListItemButton selected={selectedIndex === 2} onClick={(event) => handleListItemClick(event, 2)}>
-                <ListItemIcon>
-                    <LockOutlined />
-                </ListItemIcon>
-                <ListItemText primary="Privacy Center" />
-            </ListItemButton>
-            <ListItemButton selected={selectedIndex === 3} onClick={(event) => handleListItemClick(event, 3)}>
-                <ListItemIcon>
-                    <CommentOutlined />
-                </ListItemIcon>
-                <ListItemText primary="Feedback" />
-            </ListItemButton>
-            <ListItemButton selected={selectedIndex === 4} onClick={(event) => handleListItemClick(event, 4)}>
-                <ListItemIcon>
-                    <UnorderedListOutlined />
-                </ListItemIcon>
-                <ListItemText primary="History" />
-            </ListItemButton>
+            */}
         </List>
     );
 };
