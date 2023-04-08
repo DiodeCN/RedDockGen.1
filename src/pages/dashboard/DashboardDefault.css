@@ -22,18 +22,24 @@
     border-radius: 50%;
 }
 
-.tweet-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
+
+.tweet-info .tweet-name {
+    display: inline;
+    color: #4FC3F7;
+    margin-right: 5px;
 }
 
-.tweet-name {
-    font-weight: bold;
+
+.tweet-info .tweet-id {
+    display: inline;
+    color: #F7A8B8;
+    margin-right: 5px;
 }
+
 
 .tweet-id,
 .tweet-time {
+    display: inline;
     font-size: 0.8rem;
     color: #999;
 }
