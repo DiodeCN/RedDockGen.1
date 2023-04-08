@@ -7,9 +7,10 @@ import community from './community';
 import person from './person';
 
 // ==============================|| MENU ITEMS ||============================== //
+//     items: [dashboard, community,person,pages, friends]
 
 const menuItems = {
-    items: [dashboard, community,person,pages, friends]
+    items: [dashboard, community,person, friends]
 };
 
 export default menuItems;
