@@ -1,0 +1,52 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tweet-container {
+    border: 1px solid #ccc;
+    padding: 1rem;
+}
+
+.tweet-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tweet-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.tweet-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.tweet-name {
+    font-weight: bold;
+}
+
+.tweet-id,
+.tweet-time {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.tweet-content {
+    margin-bottom: 1rem;
+}
+
+.tweet-actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.tweet-action {
+    cursor: pointer;
+}
