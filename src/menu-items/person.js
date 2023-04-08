@@ -17,13 +17,21 @@ const person = {
     type: 'group',
     children: [
         {
-            id: 'blog',
-            title: '博客',
+            id: 'data',
+            title: '资料',
             type: 'item',
-            url: '/blog',
+            url: '/data',
             icon: icons.BookOutlined,
             breadcrumbs: false
         },
+        {
+            id: 'data',
+            title: '资料',
+            type: 'item',
+            url: '/data',
+            icon: icons.BookOutlined,
+            breadcrumbs: false
+        }
     ]
 };
 
