@@ -23,7 +23,7 @@ const DashboardDefault = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       {tweets.map(({ id, avatar_url, name, content, hours_since_post, likes, favorites, retweets }) => (
-        <Card key={id} sx={{ p: 2 }}>
+        <Card key={id} sx={{ p: 2, borderRadius: '12px', boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Avatar src={avatar_url} alt={`${name}'s avatar`} />
@@ -42,7 +42,7 @@ const DashboardDefault = () => {
             <Typography variant="body1">{content}</Typography>
           </CardContent>
           <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
               <IconButton aria-label="like" sx={{ flexGrow: 1 }}>
                 <ThumbUp />
                 <Typography variant="body2">
