@@ -19,7 +19,9 @@ const friends = {
             title: '榆法糖',
             type: 'item',
             url: 'https://elmcose.cn/',
-            icon: icons.ChromeOutlined
+            icon: icons.ChromeOutlined,
+            external: true,
+            target: true
         },
         {
             id: 'we',
