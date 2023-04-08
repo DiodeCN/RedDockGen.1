@@ -1,15 +1,9 @@
-// material-ui icons
-import { StorefrontOutlined, PublishOutlined, HistoryOutlined, BookOutlined } from '@mui/icons-material';
+import { AccountCircleOutlined, CreditCardOutlined } from '@mui/icons-material';
 
-// icons
 const icons = {
-    StorefrontOutlined,
-    PublishOutlined,
-    HistoryOutlined,
-    BookOutlined
+    AccountCircleOutlined,
+    CreditCardOutlined
 };
-
-// ==============================|| MENU ITEMS - person ||============================== //
 
 const person = {
     id: 'person',
@@ -21,15 +15,15 @@ const person = {
             title: '资料',
             type: 'item',
             url: '/data',
-            icon: icons.BookOutlined,
+            icon: icons.AccountCircleOutlined,
             breadcrumbs: false
         },
         {
-            id: 'data',
-            title: '资料',
+            id: 'wallet',
+            title: '钱包',
             type: 'item',
-            url: '/data',
-            icon: icons.BookOutlined,
+            url: '/wallet',
+            icon: icons.CreditCardOutlined,
             breadcrumbs: false
         }
     ]
