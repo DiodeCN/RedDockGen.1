@@ -20,51 +20,53 @@ const DashboardDefault = () => {
   }, []);
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', p: 4 }}>
       {tweets.map(({ id, avatar_url, name, content, hours_since_post, likes, favorites, retweets }) => (
         <Card key={id} sx={{ p: 2, borderRadius: '12px', boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Avatar src={avatar_url} alt={`${name}'s avatar`} />
-              <Typography component="div" variant="subtitle2" sx={{ color: '#4FC3F7' }}>
+              <Avatar src={avatar_url} alt={`${name}'s avatar`} sx={{mr: 1 }}/>
+              <Typography component="div" variant="subtitle2" sx={{ color: 'primary.main', fontSize: '1rem' }}>
                 {name}
               </Typography>
-              <Typography component="div" variant="caption" sx={{ color: '#F7A8B8', mr: 1 }}>
+              <Typography component="div" variant="caption" sx={{ color: 'secondary.main', fontSize: '1rem'}}>
                 @{id}
               </Typography>
-              <Typography component="div" variant="caption" sx={{ color: '#999' }}>
+              <Typography component="div" variant="caption" sx={{ color: '#999', fontSize: '1rem'}}>
                 {hours_since_post}h
               </Typography>
             </Box>
           </Box>
           <CardContent>
-            <Typography variant="body1">{content}</Typography>
-          </CardContent>
-          <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-              <IconButton aria-label="like" sx={{ flexGrow: 1 }}>
-                <ThumbUp />
-                <Typography variant="body2">
-                  {likes}
-                </Typography>
-              </IconButton>
-              <IconButton aria-label="favorite" sx={{ flexGrow: 1 }}>
-                <Star />
-                <Typography variant="body2">
-                  {favorites}
-                </Typography>
-              </IconButton>
-              <IconButton aria-label="retweet" sx={{ flexGrow: 1 }}>
-                <Repeat />
-                <Typography variant="body2">
-                  {retweets}
-                </Typography>
-              </IconButton>
-            </Box>
-          </CardActions>
-        </Card>
-      ))}
-    </Box>
+            <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>{content}</Typography>
+            </CardContent>
+      <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+          <IconButton aria-label="like" sx={{ flexGrow: 1 }}>
+            <ThumbUp />
+            <Typography variant="body2" sx={{ fontSize: '1.2rem' }}>
+              {likes}
+            </Typography>
+          </IconButton>
+          <IconButton aria-label="favorite" sx={{ flexGrow: 1 }}>
+            <Star />
+            <Typography variant="body2" sx={{ fontSize: '1.2rem' }}>
+              {favorites}
+            </Typography>
+          </IconButton>
+          <IconButton aria-label="retweet" sx={{ flexGrow: 1 }}>
+            <Repeat />
+            <Typography variant="body2" sx={{ fontSize: '1.2rem' }}>
+              {retweets}
+            </Typography>
+          </IconButton>
+        </Box>
+      </CardActions>
+    </Card>
+  ))}
+</Box>
+
+
   );
 };
 
