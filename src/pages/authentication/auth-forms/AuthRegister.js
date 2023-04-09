@@ -149,7 +149,7 @@ const AuthRegister = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
-                                    <InputLabel htmlFor="password-signup">Password</InputLabel>
+                                    <InputLabel htmlFor="password-signup">*密码</InputLabel>
                                     <OutlinedInput
                                         fullWidth
                                         error={Boolean(touched.password && errors.password)}
@@ -225,13 +225,13 @@ const AuthRegister = () => {
                                         variant="contained"
                                         color="primary"
                                     >
-                                        Create Account
+                                        创建账号
                                     </Button>
                                 </AnimateButton>
                             </Grid>
                             <Grid item xs={12}>
                                 <Divider>
-                                    <Typography variant="caption">Sign up with</Typography>
+                                    <Typography variant="caption">第三方账号注册</Typography>
                                 </Divider>
                             </Grid>
                             <Grid item xs={12}>
