@@ -137,7 +137,7 @@ const AuthRegister = () => {
                                         name="email"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        placeholder="demo@company.com"
+                                        placeholder="demo@elmcose.com"
                                         inputProps={{}}
                                     />
                                     {touched.email && errors.email && (
