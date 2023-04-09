@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './DashboardDefault.css';
 import { Box, Card, CardContent, CardActions, IconButton, Typography, Avatar } from '@mui/material';
 import { ThumbUp, Star, Repeat } from '@mui/icons-material';
 
