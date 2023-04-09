@@ -30,31 +30,31 @@ const AuthFooter = () => {
                         variant="subtitle2"
                         color="secondary"
                         component={Link}
-                        href="https://material-ui.com/store/contributors/codedthemes/"
+                        href="https://elmcose.cn/"
                         target="_blank"
                         underline="hover"
                     >
-                        MUI Templates
+                       榆法糖
                     </Typography>
                     <Typography
                         variant="subtitle2"
                         color="secondary"
                         component={Link}
-                        href="https://codedthemes.com"
+                        href="https://rcit.org.cn/"
                         target="_blank"
                         underline="hover"
                     >
-                        Privacy Policy
+                        RCIT红码工合作社
                     </Typography>
                     <Typography
                         variant="subtitle2"
                         color="secondary"
                         component={Link}
-                        href="https://codedthemes.support-hub.io/"
+                        href="https://lib.diodecn.cn/"
                         target="_blank"
                         underline="hover"
                     >
-                        Support
+                        极越文库
                     </Typography>
                 </Stack>
             </Stack>
