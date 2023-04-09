@@ -64,11 +64,12 @@ const AuthRegister = () => {
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
-                    firstname: Yup.string().max(255).required('First Name is required'),
-                    lastname: Yup.string().max(255).required('Last Name is required'),
-                    email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                    password: Yup.string().max(255).required('Password is required')
-                })}
+                    firstname: Yup.string().max(255).required('请输入名字'),
+                    lastname: Yup.string().max(255).required('请输入姓氏'),
+                    email: Yup.string().email('请输入有效的电子邮件地址').max(255).required('电子邮件地址为必填项'),
+                    password: Yup.string().max(255).required('密码为必填项')
+                  })}
+                  
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         setStatus({ success: false });
@@ -84,9 +85,8 @@ const AuthRegister = () => {
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <form noValidate onSubmit={handleSubmit}>
                         <Grid container spacing={3}>
-                            <Grid item xs={12} md={6}>
-                                <Stack spacing={1}>
-                                    <InputLabel htmlFor="firstname-signup">First Name*</InputLabel>
+                        <Grid item xs={12}>
+                                    <InputLabel htmlFor="firstname-signup">*昵称</InputLabel>
                                     <OutlinedInput
                                         id="firstname-login"
                                         type="firstname"
@@ -94,7 +94,7 @@ const AuthRegister = () => {
                                         name="firstname"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        placeholder="John"
+                                        placeholder="DiodeCN"
                                         fullWidth
                                         error={Boolean(touched.firstname && errors.firstname)}
                                     />
@@ -103,33 +103,10 @@ const AuthRegister = () => {
                                             {errors.firstname}
                                         </FormHelperText>
                                     )}
-                                </Stack>
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <Stack spacing={1}>
-                                    <InputLabel htmlFor="lastname-signup">Last Name*</InputLabel>
-                                    <OutlinedInput
-                                        fullWidth
-                                        error={Boolean(touched.lastname && errors.lastname)}
-                                        id="lastname-signup"
-                                        type="lastname"
-                                        value={values.lastname}
-                                        name="lastname"
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        placeholder="Doe"
-                                        inputProps={{}}
-                                    />
-                                    {touched.lastname && errors.lastname && (
-                                        <FormHelperText error id="helper-text-lastname-signup">
-                                            {errors.lastname}
-                                        </FormHelperText>
-                                    )}
-                                </Stack>
                             </Grid>
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
-                                    <InputLabel htmlFor="company-signup">Company</InputLabel>
+                                    <InputLabel htmlFor="company-signup">邀请人</InputLabel>
                                     <OutlinedInput
                                         fullWidth
                                         error={Boolean(touched.company && errors.company)}
@@ -138,7 +115,7 @@ const AuthRegister = () => {
                                         name="company"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
-                                        placeholder="Demo Inc."
+                                        placeholder="#114514"
                                         inputProps={{}}
                                     />
                                     {touched.company && errors.company && (
@@ -150,7 +127,7 @@ const AuthRegister = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
-                                    <InputLabel htmlFor="email-signup">Email Address*</InputLabel>
+                                    <InputLabel htmlFor="email-signup">*邮件地址</InputLabel>
                                     <OutlinedInput
                                         fullWidth
                                         error={Boolean(touched.email && errors.email)}
