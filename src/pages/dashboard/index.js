@@ -22,17 +22,17 @@ const DashboardDefault = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', p: 4 }}>
       {tweets.map(({ id, avatar_url, name, content, hours_since_post, likes, favorites, retweets }) => (
-        <Card key={id} sx={{ p: 2, borderRadius: '12px', boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)' }}>
+        <Card key={id} sx={{ p: 2, borderRadius: '12px', boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)', width: '100%' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Avatar src={avatar_url} alt={`${name}'s avatar`} sx={{mr: 1 }}/>
-              <Typography component="div" variant="subtitle2" sx={{ color: 'primary.main', fontSize: '1rem' }}>
+              <Typography component="div" variant="subtitle2" sx={{ color: 'primary.main', fontSize: '1.5rem' }}>
                 {name}
               </Typography>
-              <Typography component="div" variant="caption" sx={{ color: 'secondary.main', fontSize: '1rem'}}>
+              <Typography component="div" variant="caption" sx={{ color: 'secondary.main', fontSize: '1.12rem'}}>
                 @{id}
               </Typography>
-              <Typography component="div" variant="caption" sx={{ color: '#999', fontSize: '1rem'}}>
+              <Typography component="div" variant="caption" sx={{ color: '#999', fontSize: '1.12rem'}}>
                 {hours_since_post}h
               </Typography>
             </Box>

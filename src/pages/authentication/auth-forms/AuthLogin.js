@@ -47,8 +47,8 @@ const AuthLogin = () => {
         <>
             <Formik
                 initialValues={{
-                    email: 'info@codedthemes.com',
-                    password: '123456',
+                    email: 'example@elmcose.com',
+                    password: '',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
@@ -71,7 +71,7 @@ const AuthLogin = () => {
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
-                                    <InputLabel htmlFor="email-login">Email Address</InputLabel>
+                                    <InputLabel htmlFor="email-login">电子邮箱</InputLabel>
                                     <OutlinedInput
                                         id="email-login"
                                         type="email"
@@ -92,7 +92,7 @@ const AuthLogin = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
-                                    <InputLabel htmlFor="password-login">Password</InputLabel>
+                                    <InputLabel htmlFor="password-login">密码</InputLabel>
                                     <OutlinedInput
                                         fullWidth
                                         error={Boolean(touched.password && errors.password)}
@@ -137,10 +137,10 @@ const AuthLogin = () => {
                                                 size="small"
                                             />
                                         }
-                                        label={<Typography variant="h6">Keep me sign in</Typography>}
+                                        label={<Typography variant="h6">保持登录状态</Typography>}
                                     />
                                     <Link variant="h6" component={RouterLink} to="" color="text.primary">
-                                        Forgot Password?
+                                        忘记密码？
                                     </Link>
                                 </Stack>
                             </Grid>
@@ -160,13 +160,13 @@ const AuthLogin = () => {
                                         variant="contained"
                                         color="primary"
                                     >
-                                        Login
+                                        登录
                                     </Button>
                                 </AnimateButton>
                             </Grid>
                             <Grid item xs={12}>
                                 <Divider>
-                                    <Typography variant="caption"> Login with</Typography>
+                                    <Typography variant="caption"> 第三方账号登录</Typography>
                                 </Divider>
                             </Grid>
                             <Grid item xs={12}>
