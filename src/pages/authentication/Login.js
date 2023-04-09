@@ -16,7 +16,7 @@ const Login = () => (
                 <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
                     <Typography variant="h3">登录</Typography>
                     <Typography component={Link} to="/register" variant="body1" sx={{ textDecoration: 'none' }} color="primary">
-                        Don&apos;t have an account?
+                        没有账号？
                     </Typography>
                 </Stack>
             </Grid>
