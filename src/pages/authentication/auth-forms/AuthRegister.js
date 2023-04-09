@@ -199,13 +199,13 @@ const AuthRegister = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography variant="body2">
-                                    By Signing up, you agree to our &nbsp;
+                                    当你注册账户时，你需要遵守 &nbsp;
                                     <Link variant="subtitle2" component={RouterLink} to="#">
-                                        Terms of Service
+                                        当地法律法规
                                     </Link>
-                                    &nbsp; and &nbsp;
+                                    &nbsp; 以及 &nbsp;
                                     <Link variant="subtitle2" component={RouterLink} to="#">
-                                        Privacy Policy
+                                        网站基本准则
                                     </Link>
                                 </Typography>
                             </Grid>
