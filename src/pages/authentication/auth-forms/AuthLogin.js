@@ -46,8 +46,9 @@ const AuthLogin = () => {
     return (
         <>
             <Formik
+                placeholder="demo@elmcose.com"
                 initialValues={{
-                    email: 'demo@elmcose.com',
+                    email: '',
                     password: '',
                     submit: null
                 }}
