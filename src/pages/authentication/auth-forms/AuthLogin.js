@@ -72,18 +72,23 @@ const AuthLogin = () => {
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
-                                    <InputLabel htmlFor="email-login">电子邮箱</InputLabel>
-                                    <OutlinedInput
-                                        id="email-login"
-                                        type="email"
-                                        value={values.email}
-                                        name="email"
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        placeholder="Enter email address"
-                                        fullWidth
-                                        error={Boolean(touched.email && errors.email)}
-                                    />
+                                    <InputLabel htmlFor="email-login">电话</InputLabel>
+<OutlinedInput
+    id="email-login"
+    type="email"
+    value={values.email}
+    name="email"
+    onBlur={handleBlur}
+    onChange={handleChange}
+    placeholder="Enter email address"
+    fullWidth
+    error={Boolean(touched.email && errors.email)}
+    startAdornment={
+        <InputAdornment position="start">
+            <Typography variant="subtitle1">+86</Typography>
+        </InputAdornment>
+    }
+/>
                                     {touched.email && errors.email && (
                                         <FormHelperText error id="standard-weight-helper-text-email-login">
                                             {errors.email}
