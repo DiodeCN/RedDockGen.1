@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Card,
@@ -6,21 +6,25 @@ import {
   CardActions,
   IconButton,
   Typography,
-  Avatar
-} from "@mui/material";
+  Avatar,
+  Snackbar,
+  Alert
+} from '@mui/material';
 import {
   ThumbUp,
   Star,
   Repeat,
   Visibility,
   Comment
-} from "@mui/icons-material";
-import axios from "axios";
+} from '@mui/icons-material';
+import axios from 'axios';
 
 const Tweets = () => {
   const [tweets, setTweets] = useState([]);
   const [hotCount, setHotCount] = useState(0);
   const [comment, setcomment] = useState(0);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,12 +32,20 @@ const Tweets = () => {
         const response = await axios.get("http://192.168.1.6:8080/api/tweets");
         setTweets(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+        console.error('Error fetching data:', error);
+        setSnackbarOpen(true);
+          }
     };
 
     fetchData();
   }, []);
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarOpen(false);
+  };
 
   const increaseHotCount = () => {
     setHotCount(hotCount + 1);
@@ -41,6 +53,7 @@ const Tweets = () => {
   };
 
   return (
+    <>
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem", p: 4 }}>
       {tweets.map(
         ({
@@ -155,6 +168,17 @@ const Tweets = () => {
         )
       )}
     </Box>
+          <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
+          An error occurred while fetching tweets.
+        </Alert>
+      </Snackbar>
+    </>
   );
 };
 export default Tweets;
