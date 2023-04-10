@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Box, Card, CardContent, CardActions, IconButton, Typography, Avatar } from '@mui/material';
 import { ThumbUp, Star, Repeat } from '@mui/icons-material';
 import axios from 'axios';
@@ -18,7 +18,8 @@ const Tweets = ()  => {
     
         fetchData();
       }, []);
-      
+
+      return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', p: 4 }}>
     {tweets.map(({ id, avatar_url, name, content, hours_since_post, likes, favorites, retweets }) => (
       <Card key={id} sx={{ p: 2, borderRadius: '12px', boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)', width: '100%' }}>
@@ -64,5 +65,6 @@ const Tweets = ()  => {
   </Card>
 ))}
 </Box>
+      );
 }
 export default Tweets;
