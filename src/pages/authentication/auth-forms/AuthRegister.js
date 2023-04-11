@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import axios from 'axios';
 
 // material-ui
 import {
@@ -35,6 +36,9 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 const AuthRegister = () => {
     const [level, setLevel] = useState();
     const [showPassword, setShowPassword] = useState(false);
+    const [verificationCode, setVerificationCode] = useState('');
+    const [verificationButtonDisabled, setVerificationButtonDisabled] = useState(false);
+
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -48,6 +52,27 @@ const AuthRegister = () => {
         setLevel(strengthColor(temp));
     };
 
+    const sendVerificationCode = async (phoneNumber) => {
+        try {
+            setVerificationButtonDisabled(true);
+            await axios.post('/api/send_verification_code', { phoneNumber });
+            setTimeout(() => setVerificationButtonDisabled(false), 60000); // Re-enable after 1 minute
+        } catch (error) {
+            console.error('Failed to send verification code:', error);
+            setVerificationButtonDisabled(false);
+        }
+    };
+
+    const registerUser = async (data) => {
+        try {
+            const response = await axios.post('/api/register', data);
+            // Handle successful registration, e.g. redirect to a success page or log in the user
+            console.log(response.data);
+        } catch (error) {
+            console.error('Failed to register user:', error);
+        }
+    };
+
     useEffect(() => {
         changePassword('');
     }, []);
@@ -56,23 +81,24 @@ const AuthRegister = () => {
         <>
             <Formik
                 initialValues={{
-                    firstname: '',
-                    lastname: '',
-                    email: '',
-                    company: '',
+                    nickname: '',
+                    inviter: '',
+                    phoneNumber: '',
+                    verificationCode: '',
                     password: '',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
-                    firstname: Yup.string().max(255).required('请输入名字'),
-                    lastname: Yup.string().max(255).required('请输入姓氏'),
-                    email: Yup.string().email('请输入有效的电子邮件地址').max(255).required('电子邮件地址为必填项'),
+                    nickname: Yup.string().max(255).required('请输入昵称'),
+                    inviter: Yup.string().max(255),
+                    phoneNumber: Yup.string().required('电话为必填项'),
+                    verificationCode: Yup.string().required('验证码为必填项'),
                     password: Yup.string().max(255).required('密码为必填项')
-                  })}
-                  
+                })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         setStatus({ success: false });
+                        await registerUser(values);
                         setSubmitting(false);
                     } catch (err) {
                         console.error(err);
@@ -126,27 +152,62 @@ const AuthRegister = () => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12}>
-                                <Stack spacing={1}>
-                                    <InputLabel htmlFor="email-signup">*邮件地址</InputLabel>
-                                    <OutlinedInput
-                                        fullWidth
-                                        error={Boolean(touched.email && errors.email)}
-                                        id="email-login"
-                                        type="email"
-                                        value={values.email}
-                                        name="email"
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        placeholder="demo@elmcose.com"
-                                        inputProps={{}}
-                                    />
-                                    {touched.email && errors.email && (
-                                        <FormHelperText error id="helper-text-email-signup">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )}
-                                </Stack>
-                            </Grid>
+    <Stack spacing={1}>
+        <InputLabel htmlFor="phone-number-signup">*电话号码</InputLabel>
+        <OutlinedInput
+            fullWidth
+            error={Boolean(touched.phoneNumber && errors.phoneNumber)}
+            id="phone-number-signup"
+            type="tel"
+            value={values.phoneNumber}
+            name="phoneNumber"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder="1234567890"
+            inputProps={{}}
+        />
+        {touched.phoneNumber && errors.phoneNumber && (
+            <FormHelperText error id="helper-text-phone-number-signup">
+                {errors.phoneNumber}
+            </FormHelperText>
+        )}
+    </Stack>
+</Grid>
+<Grid item xs={12}>
+    <Stack spacing={1}>
+        <InputLabel htmlFor="verification-code-signup">*验证码</InputLabel>
+        <Stack direction="row" alignItems="center">
+            <OutlinedInput
+                error={Boolean(touched.verificationCode && errors.verificationCode)}
+                id="verification-code-signup"
+                type="text"
+                value={values.verificationCode}
+                name="verificationCode"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                placeholder="123456"
+                inputProps={{}}
+                sx={{ flexGrow: 1 }}
+            />
+            <Button
+                variant="contained"
+                color="primary"
+                disabled={verificationButtonDisabled}
+                onClick={() => sendVerificationCode(values.phoneNumber)}
+                sx={{ ml: 2 }}
+            >
+                发送验证码
+            </Button>
+        </Stack>
+        {touched.verificationCode && errors.verificationCode && (
+            <FormHelperText error id="helper-text-verification-code-signup">
+                {errors.verificationCode}
+            </FormHelperText>
+        )}
+    </Stack>
+</Grid>
+
+
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
                                     <InputLabel htmlFor="password-signup">*密码</InputLabel>

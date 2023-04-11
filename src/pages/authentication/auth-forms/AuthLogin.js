@@ -53,12 +53,11 @@ const AuthLogin = () => {
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          email: Yup.string()
-            .email("Must be a valid email")
-            .max(255)
-            .required("Email is required"),
-          password: Yup.string().max(255).required("Password is required")
-        })}
+            email: Yup.string()
+              .matches(/^[1][3-9]\d{9}$/, "你电话号码是啥玩意儿")
+              .required("电话号码还没填呢！"),
+            password: Yup.string().max(255).required("密码还没填呢！")
+          })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
             setStatus({ success: false });
