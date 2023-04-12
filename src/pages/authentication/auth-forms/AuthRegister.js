@@ -72,7 +72,7 @@ const AuthRegister = () => {
       const response = await api.post("/api/register", {
         nickname: data.nickname,
         inviter: data.inviter,
-        phoneNumber: data.phoneNumber,
+        phoneNumber: "+86"+data.phoneNumber,
         verificationCode: data.verificationCode,
         password: data.password
       });
