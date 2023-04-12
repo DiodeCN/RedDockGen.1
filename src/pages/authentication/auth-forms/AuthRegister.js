@@ -36,8 +36,7 @@ const AuthRegister = () => {
   const [level, setLevel] = useState();
   const [showPassword, setShowPassword] = useState(false);
   const [verificationCode, setVerificationCode] = useState("");
-  const [verificationButtonDisabled, setVerificationButtonDisabled] =
-    useState(false);
+  const [verificationButtonDisabled, setVerificationButtonDisabled] = useState(false);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -68,7 +67,11 @@ const AuthRegister = () => {
 
   const registerUser = async (data) => {
     try {
-      const response = await api.post("/api/register", data);
+      const response = await api.post("/api/register", data, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });      
       // Handle successful registration, e.g. redirect to a success page or log in the user
       console.log(response.data);
     } catch (error) {
@@ -82,12 +85,19 @@ const AuthRegister = () => {
   
   const handleVerificationButtonClick = async () => {
     // TODO: Add the logic to display the slider verification popup.
-    if (countdown === 0) {
+    if (
+      values.nickname &&
+      values.inviter &&
+      values.phoneNumber &&
+      values.password &&
+      countdown === 0
+    ) {
       setCountdown(60);
       localStorage.setItem("countdown_expiry", Date.now() + 60 * 1000);
       sendVerificationCode(values.phoneNumber);
     }
   };
+  
 
   const startRecoveredCountdown = () => {
     const countdownExpiry = localStorage.getItem("countdown_expiry");
