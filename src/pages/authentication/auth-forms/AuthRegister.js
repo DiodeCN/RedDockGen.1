@@ -15,9 +15,12 @@ import {
     InputAdornment,
     InputLabel,
     OutlinedInput,
+    Snackbar,
     Stack,
     Typography
 } from '@mui/material';
+
+import MuiAlert from '@mui/material/Alert';
 
 // third party
 import * as Yup from 'yup';
@@ -79,6 +82,27 @@ const AuthRegister = () => {
     };
     
 
+    const [countdown, setCountdown] = useState(0);
+
+const startCountdown = () => {
+    setCountdown(60);
+    const interval = setInterval(() => {
+        setCountdown((prevCountdown) => {
+            if (prevCountdown <= 1) {
+                clearInterval(interval);
+                return 0;
+            }
+            return prevCountdown - 1;
+        });
+    }, 1000);
+};
+
+const handleVerificationButtonClick = async () => {
+    // TODO: Add the logic to display the slider verification popup.
+    startCountdown();
+    sendVerificationCode(values.phoneNumber);
+};
+
     useEffect(() => {
         changePassword('');
     }, []);
@@ -118,7 +142,7 @@ const AuthRegister = () => {
                     <form noValidate onSubmit={handleSubmit}>
                         <Grid container spacing={3}>
                         <Grid item xs={12}>
-    <InputLabel htmlFor="nickname-signup">*昵称</InputLabel>
+    <InputLabel htmlFor="nickname-signup">昵称</InputLabel>
     <OutlinedInput
         id="nickname-signup"
         type="text"
@@ -160,7 +184,7 @@ const AuthRegister = () => {
                             </Grid>
                             <Grid item xs={12}>
     <Stack spacing={1}>
-        <InputLabel htmlFor="phone-number-signup">*电话号码</InputLabel>
+        <InputLabel htmlFor="phone-number-signup">电话号码</InputLabel>
         <OutlinedInput
             fullWidth
             error={Boolean(touched.phoneNumber && errors.phoneNumber)}
@@ -182,7 +206,7 @@ const AuthRegister = () => {
 </Grid>
 <Grid item xs={12}>
     <Stack spacing={1}>
-        <InputLabel htmlFor="verification-code-signup">*验证码</InputLabel>
+        <InputLabel htmlFor="verification-code-signup">验证码</InputLabel>
         <Stack direction="row" alignItems="center">
             <OutlinedInput
                 error={Boolean(touched.verificationCode && errors.verificationCode)}
@@ -217,7 +241,7 @@ const AuthRegister = () => {
 
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
-                                    <InputLabel htmlFor="password-signup">*密码</InputLabel>
+                                    <InputLabel htmlFor="password-signup">密码</InputLabel>
                                     <OutlinedInput
                                         fullWidth
                                         error={Boolean(touched.password && errors.password)}
