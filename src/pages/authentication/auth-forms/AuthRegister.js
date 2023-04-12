@@ -6,7 +6,6 @@ import axios from "axios";
 import {
   Box,
   Button,
-  Divider,
   FormControl,
   FormHelperText,
   Grid,
@@ -15,19 +14,16 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
-  Snackbar,
   Stack,
   Typography
 } from "@mui/material";
 
-import MuiAlert from "@mui/material/Alert";
 
 // third party
 import * as Yup from "yup";
 import { Formik } from "formik";
 
 // project import
-import FirebaseSocial from "./FirebaseSocial";
 import AnimateButton from "components/@extended/AnimateButton";
 import { strengthColor, strengthIndicator } from "utils/password-strength";
 
@@ -195,7 +191,7 @@ const AuthRegister = () => {
 
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="company-signup">邀请人</InputLabel>
+                  <InputLabel htmlFor="inviter-signup">邀请人</InputLabel>
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.company && errors.company)}
@@ -204,8 +200,19 @@ const AuthRegister = () => {
                     name="inviter"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder="#114514"
                     inputProps={{}}
+                    startAdornment={
+                      <>
+                        <Typography variant="subtitle1">
+                          <span role="img" aria-label="heart">
+                            🥳
+                          </span>
+                        </Typography>
+                        <Typography variant="subtitle1" sx={{ ml: 1 }}>
+                          #
+                        </Typography>
+                      </>
+                    }
                   />
                   {touched.inviter && errors.inviter && (
                     <FormHelperText error id="helper-text-inviter-signup">
@@ -217,10 +224,8 @@ const AuthRegister = () => {
               <Grid item xs={12}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor="phone-number-signup">
-                    电话号码
+                    电话
                   </InputLabel>
-                  <Stack direction="row" alignItems="center">
-                  <Typography sx={{fontSize: '1.5rem', width: '100px' }}>😋+86</Typography>
                     <OutlinedInput
                       fullWidth
                       error={Boolean(touched.phoneNumber && errors.phoneNumber)}
@@ -230,11 +235,21 @@ const AuthRegister = () => {
                       name="phoneNumber"
                       onBlur={handleBlur}
                       onChange={handleChange}
-                      placeholder="1234567890"
                       inputProps={{}}
                       sx={{ flexGrow: 1, ml: 1 }}
+                      startAdornment={
+                        <>
+                          <Typography variant="subtitle1">
+                            <span role="img" aria-label="heart">
+                              😶‍🌫️
+                            </span>
+                          </Typography>
+                          <Typography variant="subtitle1" sx={{ ml: 1 }}>
+                            +86
+                          </Typography>
+                        </>
+                      }
                     />
-                  </Stack>
                   {touched.phoneNumber && errors.phoneNumber && (
                     <FormHelperText error id="helper-text-phone-number-signup">
                       {errors.phoneNumber}
@@ -355,6 +370,8 @@ const AuthRegister = () => {
                   <Link variant="subtitle2" component={RouterLink} to="#">
                     网站基本准则
                   </Link>
+                  <br />
+                  同时，本项目是开源的，您的数据存储过程将会保密，我们完全不会泄露或利用。
                 </Typography>
               </Grid>
               {errors.submit && (
@@ -377,6 +394,7 @@ const AuthRegister = () => {
                   </Button>
                 </AnimateButton>
               </Grid>
+              {/*
               <Grid item xs={12}>
                 <Divider>
                   <Typography variant="caption">第三方账号注册</Typography>
@@ -385,6 +403,7 @@ const AuthRegister = () => {
               <Grid item xs={12}>
                 <FirebaseSocial />
               </Grid>
+              */}
             </Grid>
           </form>
         )}
