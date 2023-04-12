@@ -52,26 +52,32 @@ const AuthRegister = () => {
         setLevel(strengthColor(temp));
     };
 
-    const sendVerificationCode = async (phoneNumber) => {
+    const api = axios.create({
+        baseURL: 'http://localhost:10628',
+      });
+      
+      const sendVerificationCode = async (phoneNumber) => {
         try {
             setVerificationButtonDisabled(true);
-            await axios.post('/api/send_VC', { phoneNumber });
-            setTimeout(() => setVerificationButtonDisabled(false), 60000); // Re-enable after 1 minute
+            await api.post('/api/send_VC', { phoneNumber: '+86' + phoneNumber });
         } catch (error) {
             console.error('Failed to send verification code:', error);
             setVerificationButtonDisabled(false);
         }
     };
+    
+      
 
-    const registerUser = async (data) => {
+      const registerUser = async (data) => {
         try {
-            const response = await axios.post('/api/register', data);
+            const response = await api.post('/api/register', data);
             // Handle successful registration, e.g. redirect to a success page or log in the user
             console.log(response.data);
         } catch (error) {
             console.error('Failed to register user:', error);
         }
     };
+    
 
     useEffect(() => {
         changePassword('');
