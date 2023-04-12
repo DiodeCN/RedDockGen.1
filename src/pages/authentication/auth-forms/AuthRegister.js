@@ -55,7 +55,7 @@ const AuthRegister = () => {
     const sendVerificationCode = async (phoneNumber) => {
         try {
             setVerificationButtonDisabled(true);
-            await axios.post('/api/send_verification_code', { phoneNumber });
+            await axios.post('/api/send_VC', { phoneNumber });
             setTimeout(() => setVerificationButtonDisabled(false), 60000); // Re-enable after 1 minute
         } catch (error) {
             console.error('Failed to send verification code:', error);
