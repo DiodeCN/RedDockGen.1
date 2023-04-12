@@ -67,17 +67,23 @@ const AuthRegister = () => {
 
   const registerUser = async (data) => {
     try {
-      const response = await api.post("/api/register", data, {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });      
+      console.log("Sending data:", data);
+  
+      const response = await api.post("/api/register", {
+        nickname: data.nickname,
+        inviter: data.inviter,
+        phoneNumber: data.phoneNumber,
+        verificationCode: data.verificationCode,
+        password: data.password
+      });
+  
       // Handle successful registration, e.g. redirect to a success page or log in the user
       console.log(response.data);
     } catch (error) {
       console.error("Failed to register user:", error);
     }
   };
+  
 
   const [countdown, setCountdown] = useState(0);
   const [recoveredFromLocalStorage, setRecoveredFromLocalStorage] = useState(false);
