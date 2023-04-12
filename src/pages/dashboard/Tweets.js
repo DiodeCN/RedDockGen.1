@@ -29,7 +29,7 @@ const Tweets = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://192.168.1.6:8080/api/tweets");
+        const response = await axios.get("http://192.168.1.6:10628/api/tweets");
         setTweets(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);

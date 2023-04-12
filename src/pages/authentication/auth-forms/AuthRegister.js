@@ -112,24 +112,25 @@ const AuthRegister = () => {
                     <form noValidate onSubmit={handleSubmit}>
                         <Grid container spacing={3}>
                         <Grid item xs={12}>
-                                    <InputLabel htmlFor="firstname-signup">*昵称</InputLabel>
-                                    <OutlinedInput
-                                        id="firstname-login"
-                                        type="firstname"
-                                        value={values.firstname}
-                                        name="firstname"
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        placeholder="DiodeCN"
-                                        fullWidth
-                                        error={Boolean(touched.firstname && errors.firstname)}
-                                    />
-                                    {touched.firstname && errors.firstname && (
-                                        <FormHelperText error id="helper-text-firstname-signup">
-                                            {errors.firstname}
-                                        </FormHelperText>
-                                    )}
-                            </Grid>
+    <InputLabel htmlFor="nickname-signup">*昵称</InputLabel>
+    <OutlinedInput
+        id="nickname-signup"
+        type="text"
+        value={values.nickname}
+        name="nickname"
+        onBlur={handleBlur}
+        onChange={handleChange}
+        placeholder="DiodeCN"
+        fullWidth
+        error={Boolean(touched.nickname && errors.nickname)}
+    />
+    {touched.nickname && errors.nickname && (
+        <FormHelperText error id="helper-text-nickname-signup">
+            {errors.nickname}
+        </FormHelperText>
+    )}
+</Grid>
+
                             <Grid item xs={12}>
                                 <Stack spacing={1}>
                                     <InputLabel htmlFor="company-signup">邀请人</InputLabel>
