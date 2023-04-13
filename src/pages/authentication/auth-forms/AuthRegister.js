@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -41,7 +41,7 @@ const AuthRegister = () => {
     useState(false);
   const [snackbar, setSnackbar] = useState({
     open: false,
-    message: "",
+    message: "注册成功 将在三秒后跳转",
     severity: "success"
   });
 
@@ -62,7 +62,16 @@ const AuthRegister = () => {
     baseURL: "http://localhost:10628"
   });
 
+  const CustomAlert = React.forwardRef((props, ref) => {
+    return <Alert ref={ref} elevation={6} variant="filled" {...props} />;
+  });
+
   const sendVerificationCode = async (phoneNumber) => {
+    setSnackbar({
+      open: true,
+      message: "如果您的电话号是正确的 那么您将收到六位验证码",
+      severity: "success"
+    });
     try {
       setVerificationButtonDisabled(true);
       await api.post("/api/send_VC", { phoneNumber: "+86" + phoneNumber });
@@ -89,24 +98,44 @@ const AuthRegister = () => {
       if (response.data.message === "user_registered_successfully") {
         setSnackbar({
           open: true,
-          message: "注册成功！",
+          message: "注册成功 将在三秒后跳转",
           severity: "success"
         });
-        window.location.href = "/";
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 3000);
       } else {
         setSnackbar({
           open: true,
-          message: response.data.message || "未知错误",
+          message: "未知错误",
           severity: "error"
         });
       }
     } catch (error) {
       console.error("Failed to register user:", error);
-      setSnackbar({
-        open: true,
-        message: "未知错误",
-        severity: "error"
-      });
+
+      // 调试：在控制台中打印错误响应
+      console.log("Error response:", error.response);
+
+      // 获取错误响应的 message 属性，如果没有则设置为 "未知错误"
+      const errorMessage =
+        error.response?.data?.message || "邀请人|验证码错误 或本电话号已被注册";
+
+      // 检查错误状态码是否为 400
+      if (error.response?.status === 400) {
+        // 在此处处理 400 错误
+        setSnackbar({
+          open: true,
+          message: errorMessage, // 使用错误响应中的 message，或者自定义一个错误消息
+          severity: "error"
+        });
+      } else {
+        setSnackbar({
+          open: true,
+          message: errorMessage,
+          severity: "error"
+        });
+      }
     }
   };
 
@@ -395,14 +424,14 @@ const AuthRegister = () => {
         open={snackbar.open}
         autoHideDuration={6000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
-        <Alert
+        <CustomAlert
           onClose={() => setSnackbar({ ...snackbar, open: false })}
           severity={snackbar.severity}
-          sx={{ width: "100%" }}
         >
-          {snackbar.message.message}
-        </Alert>
+          {snackbar.message}
+        </CustomAlert>
       </Snackbar>
     </>
   );
