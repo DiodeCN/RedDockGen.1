@@ -85,20 +85,23 @@ const AuthRegister = () => {
         password: data.password,
       });
   
-      if (response.data === "user_registered_successfully") {
+      console.log("Response:", response.data);
+
+      if (response.data.message === "user_registered_successfully") {
         setSnackbar({
           open: true,
           message: "注册成功！",
           severity: "success",
         });
-        navigate("/");
+        window.location.href = "/";
       } else {
         setSnackbar({
           open: true,
-          message: response.data || "未知错误",
+          message: response.data.message || "未知错误",
           severity: "error",
         });
       }
+      
     } catch (error) {
       console.error("Failed to register user:", error);
       setSnackbar({
@@ -442,13 +445,14 @@ const AuthRegister = () => {
     autoHideDuration={6000}
     onClose={() => setSnackbar({ ...snackbar, open: false })}
   >
-    <Alert
-      onClose={() => setSnackbar({ ...snackbar, open: false })}
-      severity={snackbar.severity}
-      sx={{ width: "100%" }}
-    >
-      {snackbar.message}
-    </Alert>
+<Alert
+  onClose={() => setSnackbar({ ...snackbar, open: false })}
+  severity={snackbar.severity}
+  sx={{ width: "100%" }}
+>
+  {snackbar.message.message}
+</Alert>
+
   </Snackbar>
     </>
   );
