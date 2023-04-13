@@ -77,6 +77,29 @@ const AuthRegister = () => {
     }
   }, [timeLeft]);
 
+  useEffect(() => {
+    const sentAt = localStorage.getItem("verificationCodeSentAt");
+    if (sentAt) {
+      const elapsedTime = Math.floor((Date.now() - sentAt) / 1000);
+      if (elapsedTime < 60) {
+        setTimeLeft(60 - elapsedTime);
+        setVerificationButtonDisabled(true);
+        const timer = setInterval(() => {
+          setTimeLeft((prevTimeLeft) => {
+            if (prevTimeLeft > 1) {
+              return prevTimeLeft - 1;
+            } else {
+              clearInterval(timer);
+              setVerificationButtonDisabled(false);
+              return 0;
+            }
+          });
+        }, 1000);
+      }
+    }
+  }, []);
+  
+
   
   const sendVerificationCode = async (phoneNumber) => {
     setSnackbar({
@@ -85,6 +108,7 @@ const AuthRegister = () => {
       severity: "success"
     });
     setTimeLeft(60);
+    localStorage.setItem("verificationCodeSentAt", Date.now()); // 添加这一行
     try {
       await api.post("/api/send_VC", { phoneNumber: "+86" + phoneNumber });
     } catch (error) {
