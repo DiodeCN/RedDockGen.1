@@ -44,6 +44,8 @@ const AuthRegister = () => {
     message: "注册成功 将在三秒后跳转",
     severity: "success"
   });
+  const [timeLeft, setTimeLeft] = useState(0);
+
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -66,14 +68,24 @@ const AuthRegister = () => {
     return <Alert ref={ref} elevation={6} variant="filled" {...props} />;
   });
 
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timer = setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [timeLeft]);
+
+  
   const sendVerificationCode = async (phoneNumber) => {
     setSnackbar({
       open: true,
       message: "如果您的电话号是正确的 那么您将收到六位验证码",
       severity: "success"
     });
+    setTimeLeft(60);
     try {
-      setVerificationButtonDisabled(true);
       await api.post("/api/send_VC", { phoneNumber: "+86" + phoneNumber });
     } catch (error) {
       console.error("Failed to send verification code:", error);
@@ -291,15 +303,29 @@ const AuthRegister = () => {
                       inputProps={{}}
                       sx={{ flexGrow: 1 }}
                     />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      disabled={verificationButtonDisabled}
-                      onClick={() => sendVerificationCode(values.phoneNumber)}
-                      sx={{ ml: 2 }}
-                    >
-                      发送验证码
-                    </Button>
+<Button
+  variant="contained"
+  color="primary"
+  disabled={verificationButtonDisabled || timeLeft > 0}
+  onClick={() => sendVerificationCode(values.phoneNumber)}
+  sx={{ ml: 2, minWidth: "150px" }}
+>
+  <Box
+    component="span"
+    sx={{
+      display: "inline-block",
+      textAlign: "center",
+      width: "100%",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis"
+    }}
+  >
+    发送验证码{timeLeft > 0 ? ` (${timeLeft}秒)` : ""}
+  </Box>
+</Button>
+
+
                   </Stack>
                   {touched.verificationCode && errors.verificationCode && (
                     <FormHelperText
