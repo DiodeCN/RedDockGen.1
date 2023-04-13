@@ -69,35 +69,34 @@ const AuthRegister = () => {
   });
 
   useEffect(() => {
+    let timer;
+  
     if (timeLeft > 0) {
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         setTimeLeft(timeLeft - 1);
       }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [timeLeft]);
-
-  useEffect(() => {
-    const sentAt = localStorage.getItem("verificationCodeSentAt");
-    if (sentAt) {
-      const elapsedTime = Math.floor((Date.now() - sentAt) / 1000);
-      if (elapsedTime < 60) {
-        setTimeLeft(60 - elapsedTime);
-        setVerificationButtonDisabled(true);
-        const timer = setInterval(() => {
-          setTimeLeft((prevTimeLeft) => {
-            if (prevTimeLeft > 1) {
-              return prevTimeLeft - 1;
-            } else {
-              clearInterval(timer);
-              setVerificationButtonDisabled(false);
-              return 0;
-            }
-          });
-        }, 1000);
+    } else {
+      const sentAt = localStorage.getItem("verificationCodeSentAt");
+      if (sentAt) {
+        const elapsedTime = Math.floor((Date.now() - sentAt) / 1000);
+        if (elapsedTime < 60) {
+          setTimeLeft(60 - elapsedTime);
+          setVerificationButtonDisabled(true);
+        } else {
+          setVerificationButtonDisabled(false);
+        }
+      } else {
+        setVerificationButtonDisabled(false);
       }
     }
-  }, []);
+  
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [timeLeft]);
+  
   
 
   
