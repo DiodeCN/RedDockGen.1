@@ -110,43 +110,6 @@ const AuthRegister = () => {
     }
   };
 
-  const [countdown, setCountdown] = useState(0);
-  const [recoveredFromLocalStorage, setRecoveredFromLocalStorage] =
-    useState(false);
-  let countdownTimeout;
-
-  const startRecoveredCountdown = () => {
-    const countdownExpiry = localStorage.getItem("countdown_expiry");
-    if (countdownExpiry) {
-      const remainingTime = Math.ceil((countdownExpiry - Date.now()) / 1000);
-      if (remainingTime > 0) {
-        setCountdown(remainingTime);
-        setRecoveredFromLocalStorage(true);
-      } else {
-        localStorage.removeItem("countdown_expiry");
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (!recoveredFromLocalStorage) {
-      startRecoveredCountdown();
-    }
-
-    if (countdown > 0) {
-      countdownTimeout = setTimeout(() => {
-        setCountdown(countdown - 1);
-      }, 1000);
-    } else {
-      clearTimeout(countdownTimeout);
-      localStorage.removeItem("countdown_expiry");
-    }
-
-    return () => {
-      clearTimeout(countdownTimeout);
-    };
-  }, [countdown]);
-
   useEffect(() => {
     changePassword("");
   }, []);
@@ -202,7 +165,6 @@ const AuthRegister = () => {
                   name="nickname"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  placeholder="DiodeCN"
                   fullWidth
                   error={Boolean(touched.nickname && errors.nickname)}
                 />
@@ -296,7 +258,7 @@ const AuthRegister = () => {
                       name="verificationCode"
                       onBlur={handleBlur}
                       onChange={handleChange}
-                      placeholder="123456"
+                      placeholder=""
                       inputProps={{}}
                       sx={{ flexGrow: 1 }}
                     />
@@ -353,7 +315,6 @@ const AuthRegister = () => {
                         </IconButton>
                       </InputAdornment>
                     }
-                    placeholder="******"
                     inputProps={{}}
                   />
                   {touched.password && errors.password && (
