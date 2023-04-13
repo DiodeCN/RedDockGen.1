@@ -15,7 +15,9 @@ import {
   InputLabel,
   OutlinedInput,
   Stack,
-  Typography
+  Typography,
+  Alert,
+  Snackbar
 } from "@mui/material";
 
 
@@ -35,8 +37,13 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 const AuthRegister = () => {
   const [level, setLevel] = useState();
   const [showPassword, setShowPassword] = useState(false);
-  const [verificationCode, setVerificationCode] = useState("");
   const [verificationButtonDisabled, setVerificationButtonDisabled] = useState(false);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success",
+  });
+  
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -71,38 +78,43 @@ const AuthRegister = () => {
   
       const response = await api.post("/api/register", {
         nickname: data.nickname,
-        inviter: data.inviter,
-        phoneNumber: "+86"+data.phoneNumber,
+        inviter: "#" + data.inviter,
+        phoneNumber: "+86" + data.phoneNumber,
         verificationCode: data.verificationCode,
-        password: data.password
+        password: data.password,
       });
   
-      // Handle successful registration, e.g. redirect to a success page or log in the user
-      console.log(response.data);
+      if (response.data === "user_registered_successfully") {
+        setSnackbar({
+          open: true,
+          message: "注册成功！",
+          severity: "success",
+        });
+        // 你可以在这里添加跳转到主页的逻辑
+      } else {
+        setSnackbar({
+          open: true,
+          message: response.data || "未知错误",
+          severity: "error",
+        });
+      }
     } catch (error) {
       console.error("Failed to register user:", error);
+      setSnackbar({
+        open: true,
+        message: "未知错误",
+        severity: "error",
+      });
     }
   };
+  
+  
   
 
   const [countdown, setCountdown] = useState(0);
   const [recoveredFromLocalStorage, setRecoveredFromLocalStorage] = useState(false);
   let countdownTimeout;
   
-  const handleVerificationButtonClick = async () => {
-    // TODO: Add the logic to display the slider verification popup.
-    if (
-      values.nickname &&
-      values.inviter &&
-      values.phoneNumber &&
-      values.password &&
-      countdown === 0
-    ) {
-      setCountdown(60);
-      localStorage.setItem("countdown_expiry", Date.now() + 60 * 1000);
-      sendVerificationCode(values.phoneNumber);
-    }
-  };
   
 
   const startRecoveredCountdown = () => {
@@ -424,6 +436,19 @@ const AuthRegister = () => {
           </form>
         )}
       </Formik>
+      <Snackbar
+    open={snackbar.open}
+    autoHideDuration={6000}
+    onClose={() => setSnackbar({ ...snackbar, open: false })}
+  >
+    <Alert
+      onClose={() => setSnackbar({ ...snackbar, open: false })}
+      severity={snackbar.severity}
+      sx={{ width: "100%" }}
+    >
+      {snackbar.message}
+    </Alert>
+  </Snackbar>
     </>
   );
 };
