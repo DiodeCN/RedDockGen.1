@@ -20,7 +20,6 @@ import {
   Snackbar
 } from "@mui/material";
 
-
 // third party
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -38,13 +37,13 @@ const AuthRegister = () => {
   const navigate = useNavigate();
   const [level, setLevel] = useState();
   const [showPassword, setShowPassword] = useState(false);
-  const [verificationButtonDisabled, setVerificationButtonDisabled] = useState(false);
+  const [verificationButtonDisabled, setVerificationButtonDisabled] =
+    useState(false);
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
-    severity: "success",
+    severity: "success"
   });
-  
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -76,50 +75,45 @@ const AuthRegister = () => {
   const registerUser = async (data) => {
     try {
       console.log("Sending data:", data);
-  
+
       const response = await api.post("/api/register", {
         nickname: data.nickname,
         inviter: "#" + data.inviter,
         phoneNumber: "+86" + data.phoneNumber,
         verificationCode: data.verificationCode,
-        password: data.password,
+        password: data.password
       });
-  
+
       console.log("Response:", response.data);
 
       if (response.data.message === "user_registered_successfully") {
         setSnackbar({
           open: true,
           message: "注册成功！",
-          severity: "success",
+          severity: "success"
         });
         window.location.href = "/";
       } else {
         setSnackbar({
           open: true,
           message: response.data.message || "未知错误",
-          severity: "error",
+          severity: "error"
         });
       }
-      
     } catch (error) {
       console.error("Failed to register user:", error);
       setSnackbar({
         open: true,
         message: "未知错误",
-        severity: "error",
+        severity: "error"
       });
     }
   };
-  
-  
-  
 
   const [countdown, setCountdown] = useState(0);
-  const [recoveredFromLocalStorage, setRecoveredFromLocalStorage] = useState(false);
+  const [recoveredFromLocalStorage, setRecoveredFromLocalStorage] =
+    useState(false);
   let countdownTimeout;
-  
-  
 
   const startRecoveredCountdown = () => {
     const countdownExpiry = localStorage.getItem("countdown_expiry");
@@ -133,13 +127,12 @@ const AuthRegister = () => {
       }
     }
   };
-  
 
   useEffect(() => {
     if (!recoveredFromLocalStorage) {
       startRecoveredCountdown();
     }
-  
+
     if (countdown > 0) {
       countdownTimeout = setTimeout(() => {
         setCountdown(countdown - 1);
@@ -148,12 +141,11 @@ const AuthRegister = () => {
       clearTimeout(countdownTimeout);
       localStorage.removeItem("countdown_expiry");
     }
-  
+
     return () => {
       clearTimeout(countdownTimeout);
     };
   }, [countdown]);
-  
 
   useEffect(() => {
     changePassword("");
@@ -255,33 +247,31 @@ const AuthRegister = () => {
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="phone-number-signup">
-                    电话
-                  </InputLabel>
-                    <OutlinedInput
-                      fullWidth
-                      error={Boolean(touched.phoneNumber && errors.phoneNumber)}
-                      id="phone-number-signup"
-                      type="tel"
-                      value={values.phoneNumber}
-                      name="phoneNumber"
-                      onBlur={handleBlur}
-                      onChange={handleChange}
-                      inputProps={{}}
-                      sx={{ flexGrow: 1, ml: 1 }}
-                      startAdornment={
-                        <>
-                          <Typography variant="subtitle1">
-                            <span role="img" aria-label="heart">
-                              😶‍🌫️
-                            </span>
-                          </Typography>
-                          <Typography variant="subtitle1" sx={{ ml: 1 }}>
-                            +86
-                          </Typography>
-                        </>
-                      }
-                    />
+                  <InputLabel htmlFor="phone-number-signup">电话</InputLabel>
+                  <OutlinedInput
+                    fullWidth
+                    error={Boolean(touched.phoneNumber && errors.phoneNumber)}
+                    id="phone-number-signup"
+                    type="tel"
+                    value={values.phoneNumber}
+                    name="phoneNumber"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    inputProps={{}}
+                    sx={{ flexGrow: 1, ml: 1 }}
+                    startAdornment={
+                      <>
+                        <Typography variant="subtitle1">
+                          <span role="img" aria-label="heart">
+                            😶‍🌫️
+                          </span>
+                        </Typography>
+                        <Typography variant="subtitle1" sx={{ ml: 1 }}>
+                          +86
+                        </Typography>
+                      </>
+                    }
+                  />
                   {touched.phoneNumber && errors.phoneNumber && (
                     <FormHelperText error id="helper-text-phone-number-signup">
                       {errors.phoneNumber}
@@ -441,19 +431,18 @@ const AuthRegister = () => {
         )}
       </Formik>
       <Snackbar
-    open={snackbar.open}
-    autoHideDuration={6000}
-    onClose={() => setSnackbar({ ...snackbar, open: false })}
-  >
-<Alert
-  onClose={() => setSnackbar({ ...snackbar, open: false })}
-  severity={snackbar.severity}
-  sx={{ width: "100%" }}
->
-  {snackbar.message.message}
-</Alert>
-
-  </Snackbar>
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+      >
+        <Alert
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          severity={snackbar.severity}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message.message}
+        </Alert>
+      </Snackbar>
     </>
   );
 };
