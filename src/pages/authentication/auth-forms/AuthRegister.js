@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // material-ui
@@ -35,6 +35,7 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 // ============================|| FIREBASE - REGISTER ||============================ //
 
 const AuthRegister = () => {
+  const navigate = useNavigate();
   const [level, setLevel] = useState();
   const [showPassword, setShowPassword] = useState(false);
   const [verificationButtonDisabled, setVerificationButtonDisabled] = useState(false);
@@ -90,7 +91,7 @@ const AuthRegister = () => {
           message: "注册成功！",
           severity: "success",
         });
-        // 你可以在这里添加跳转到主页的逻辑
+        navigate("/");
       } else {
         setSnackbar({
           open: true,
@@ -167,11 +168,11 @@ const AuthRegister = () => {
           submit: null
         }}
         validationSchema={Yup.object().shape({
-          nickname: Yup.string().max(255).required("昵称呢？"),
-          inviter: Yup.string().max(255).required("邀请人呢？"),
-          phoneNumber: Yup.string().required("电话呢？"),
-          verificationCode: Yup.string().required("验证码呢？"),
-          password: Yup.string().max(255).required("密码呢？")
+          nickname: Yup.string().max(255).required("昵称是必填项。"),
+          inviter: Yup.string().max(255).required("邀请人是必填项。"),
+          phoneNumber: Yup.string().required("电话是必填项。"),
+          verificationCode: Yup.string().required("验证码是必填项。"),
+          password: Yup.string().max(255).required("密码是必填项。")
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
