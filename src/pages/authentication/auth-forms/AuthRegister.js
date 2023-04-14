@@ -61,7 +61,7 @@ const AuthRegister = () => {
   };
 
   const api = axios.create({
-    baseURL: "http://localhost:10628"
+    baseURL: "https://api.cloudepot.cn/"
   });
 
   const CustomAlert = React.forwardRef((props, ref) => {
