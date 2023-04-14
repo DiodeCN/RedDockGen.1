@@ -103,7 +103,7 @@ const AuthRegister = () => {
   const sendVerificationCode = async (phoneNumber) => {
     setSnackbar({
       open: true,
-      message: "如果您的电话号是正确的 那么您将收到六位数的验证码",
+      message: "如果您填写的电话号是正确的 那么您将收到六位数的验证码",
       severity: "success"
     });
     setTimeLeft(60);
@@ -473,7 +473,7 @@ const AuthRegister = () => {
         open={snackbar.open}
         autoHideDuration={6000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
         <CustomAlert
           onClose={() => setSnackbar({ ...snackbar, open: false })}
