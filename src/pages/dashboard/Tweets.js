@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import {
   Box,
@@ -19,6 +20,21 @@ import {
 } from '@mui/icons-material';
 import axios from 'axios';
 
+
+const ProtectedComponent = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isLoggedIn = checkLoggedIn(); // 您需要实现这个函数来检查用户是否已登录
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  // 保护的组件内容
+  return <div>Your protected content here</div>;
+};
+
 const Tweets = () => {
   const [tweets, setTweets] = useState([]);
   const [hotCount, setHotCount] = useState(0);
@@ -26,6 +42,7 @@ const Tweets = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
 
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
