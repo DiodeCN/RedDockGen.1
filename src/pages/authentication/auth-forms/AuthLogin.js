@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{ useState }from "react";
 import { Link as RouterLink } from "react-router-dom";
 import CryptoJS from 'crypto-js';
 
@@ -33,8 +33,7 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const AuthLogin = () => {
-  const [inputString, setInputString] = useState('');
-  const [encryptedString, setEncryptedString] = useState('');
+
 
   const [checked, setChecked] = React.useState(false);
 
@@ -47,11 +46,7 @@ const AuthLogin = () => {
     event.preventDefault();
   };
 
-  const handleClick = () => {
-    const secretKey = process.env.REACT_APP_SECRET_KEY;
-    const encrypted = CryptoJS.AES.encrypt(inputString, secretKey).toString();
-    setEncryptedString(encrypted);
-  };
+  
 
 
 
@@ -66,7 +61,6 @@ const AuthLogin = () => {
         }}
         validationSchema={Yup.object().shape({
             email: Yup.string()
-              .matches(/^[1][3-9]\d{9}$/, "电话号码填错啦！")
               .required("电话号码是必填项。"),
             password: Yup.string().max(255).required("密码是必填项。")
           })}
@@ -89,7 +83,42 @@ const AuthLogin = () => {
           isSubmitting,
           touched,
           values
-        }) => (
+        }) => {
+          const handleClick = async (email, password) => {
+            const secretKey = process.env.AES_SECRET_KEY;
+            const timestamp = new Date().toISOString();
+            const dataToEncrypt = `${timestamp}|${email}|${password}`;
+            const encrypted = CryptoJS.AES.encrypt(dataToEncrypt, secretKey).toString();
+            console.log(encrypted);
+
+            console.log(
+              JSON.stringify({
+              timestamp,
+              email,
+              password,
+              encrypted,
+            })
+            );
+        
+            const response = await fetch("https://api.cloudepot.cn/api/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                timestamp,
+                email,
+                password,
+                encrypted,
+              }),
+            });
+        
+
+            const result = await response.json();
+            console.log(result);
+          };
+          return (
+
           <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
@@ -214,23 +243,16 @@ const AuthLogin = () => {
                     type="submit"
                     variant="contained"
                     color="primary"
-                    onClick={handleClick}
-                  >
+                    onClick={() => handleClick(values.email, values.password)}
+                    >
                     登录
                   </Button>
                 </AnimateButton>
               </Grid>
-              <Grid item xs={12}>
-                <Divider>
-                  <Typography variant="caption"> 第三方账号登录</Typography>
-                </Divider>
-              </Grid>
-              <Grid item xs={12}>
-                <FirebaseSocial />
-              </Grid>
             </Grid>
           </form>
-        )}
+          );
+        }}
       </Formik>
     </>
   );
