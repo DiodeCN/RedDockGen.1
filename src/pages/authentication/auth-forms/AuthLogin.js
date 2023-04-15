@@ -1,5 +1,6 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
+import CryptoJS from 'crypto-js';
 
 // material-ui
 import {
@@ -32,6 +33,9 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const AuthLogin = () => {
+  const [inputString, setInputString] = useState('');
+  const [encryptedString, setEncryptedString] = useState('');
+
   const [checked, setChecked] = React.useState(false);
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -42,6 +46,14 @@ const AuthLogin = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const handleClick = () => {
+    const secretKey = process.env.REACT_APP_SECRET_KEY;
+    const encrypted = CryptoJS.AES.encrypt(inputString, secretKey).toString();
+    setEncryptedString(encrypted);
+  };
+
+
 
   return (
     <>
@@ -202,6 +214,7 @@ const AuthLogin = () => {
                     type="submit"
                     variant="contained"
                     color="primary"
+                    onClick={handleClick}
                   >
                     登录
                   </Button>
