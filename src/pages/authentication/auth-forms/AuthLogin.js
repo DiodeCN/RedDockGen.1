@@ -54,9 +54,9 @@ const AuthLogin = () => {
         }}
         validationSchema={Yup.object().shape({
             email: Yup.string()
-              .matches(/^[1][3-9]\d{9}$/, "你电话号码是啥玩意儿")
-              .required("电话号码还没填呢！"),
-            password: Yup.string().max(255).required("密码还没填呢！")
+              .matches(/^[1][3-9]\d{9}$/, "电话号码填错啦！")
+              .required("电话号码是必填项。"),
+            password: Yup.string().max(255).required("密码是必填项。")
           })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
@@ -90,14 +90,14 @@ const AuthLogin = () => {
                     name="email"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder="Enter email address"
+                    placeholder=""
                     fullWidth
                     error={Boolean(touched.email && errors.email)}
                     startAdornment={
                       <>
                         <Typography variant="subtitle1">
                           <span role="img" aria-label="heart">
-                            😋
+                            😶‍🌫️
                           </span>
                         </Typography>
                         <Typography variant="subtitle1" sx={{ ml: 1 }}>
@@ -145,7 +145,7 @@ const AuthLogin = () => {
                         </IconButton>
                       </InputAdornment>
                     }
-                    placeholder="Enter password"
+                    placeholder=""
                   />
                   {touched.password && errors.password && (
                     <FormHelperText
