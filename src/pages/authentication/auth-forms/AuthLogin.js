@@ -85,21 +85,33 @@ const AuthLogin = () => {
           values
         }) => {
           const handleClick = async (email, password) => {
-            const secretKey = process.env.AES_SECRET_KEY;
+            const secretKey = process.env.REACT_APP_SECRET_KEY;
             const timestamp = new Date().toISOString();
-            const dataToEncrypt = `${timestamp}|${email}|${password}`;
-            const encrypted = CryptoJS.AES.encrypt(dataToEncrypt, secretKey).toString();
-            console.log(encrypted);
+            const dataToEncrypt = timestamp+"|"+"86"+email+"|"+password;
 
+            
+            const key = CryptoJS.enc.Utf8.parse(secretKey);
+            const iv = CryptoJS.lib.WordArray.random(16);
+            
+            const encrypted = CryptoJS.AES.encrypt(dataToEncrypt, key, {
+              iv: iv,
+              mode: CryptoJS.mode.CBC,
+              padding: CryptoJS.pad.Pkcs7
+            });
+            
+            const encryptedData = iv.concat(encrypted.ciphertext).toString(CryptoJS.enc.Base64);
+            
+            console.log(encryptedData);
+            /*
             console.log(
               JSON.stringify({
               timestamp,
               email,
               password,
-              encrypted,
+              encrypted: encryptedData, // Change this line
             })
             );
-        
+            */
             const response = await fetch("https://api.cloudepot.cn/api/login", {
               method: "POST",
               headers: {
@@ -109,7 +121,7 @@ const AuthLogin = () => {
                 timestamp,
                 email,
                 password,
-                encrypted,
+                encrypted: encryptedData, // Change this line
               }),
             });
         
