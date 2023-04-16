@@ -16,7 +16,9 @@ import {
   InputLabel,
   OutlinedInput,
   Stack,
-  Typography
+  Typography,
+  Snackbar,
+  Alert
 } from "@mui/material";
 
 // third party
@@ -33,8 +35,12 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const AuthLogin = () => {
-
-
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success",
+  });
+  
   const [checked, setChecked] = React.useState(false);
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -127,7 +133,24 @@ const AuthLogin = () => {
         
 
             const result = await response.json();
-            console.log(result);
+
+            if (response.status === 200) {
+              setSnackbar({
+                open: true,
+                message: "注册成功 将在三秒后跳转",
+                severity: "success",
+              });
+          
+              setTimeout(() => {
+                window.location.href = "/";
+              }, 3000);
+            } else {
+              setSnackbar({
+                open: true,
+                message: result.message || "登录失败",
+                severity: "error",
+              });
+            }
           };
           return (
 
@@ -266,6 +289,20 @@ const AuthLogin = () => {
           );
         }}
       </Formik>
+      <Snackbar
+      open={snackbar.open}
+      autoHideDuration={3000}
+      onClose={() => setSnackbar({ ...snackbar, open: false })}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+    >
+      <Alert
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        severity={snackbar.severity}
+        sx={{ width: "100%" }}
+      >
+        {snackbar.message}
+      </Alert>
+    </Snackbar>
     </>
   );
 };
