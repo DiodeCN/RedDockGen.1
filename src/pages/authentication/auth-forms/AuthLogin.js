@@ -119,7 +119,7 @@ const AuthLogin = () => {
               },
               body: JSON.stringify({
                 timestamp,
-                email,
+                email: "+86"+email,
                 password,
                 encrypted: encryptedData, // Change this line
               }),
