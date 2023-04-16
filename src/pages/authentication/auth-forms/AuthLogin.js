@@ -87,7 +87,7 @@ const AuthLogin = () => {
           const handleClick = async (email, password) => {
             const secretKey = process.env.REACT_APP_SECRET_KEY;
             const timestamp = new Date().toISOString();
-            const dataToEncrypt = timestamp+"|"+"86"+email+"|"+password;
+            const dataToEncrypt = timestamp+"|"+"+86"+email+"|"+password;
 
             
             const key = CryptoJS.enc.Utf8.parse(secretKey);
