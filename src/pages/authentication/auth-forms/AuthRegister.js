@@ -103,7 +103,7 @@ const AuthRegister = () => {
   const sendVerificationCode = async (phoneNumber) => {
     setSnackbar({
       open: true,
-      message: "如果您填写的电话号是正确的 那么您将收到六位数的验证码",
+      message: "如果您正确填写电话号 那么您将收到六位数的验证码",
       severity: "success"
     });
     setTimeLeft(60);
@@ -133,7 +133,7 @@ const AuthRegister = () => {
       if (response.data.message === "user_registered_successfully") {
         setSnackbar({
           open: true,
-          message: "注册成功 将在三秒后跳转到主页",
+          message: "注册成功 将在三秒后跳转至主页",
           severity: "success"
         });
         setTimeout(() => {
