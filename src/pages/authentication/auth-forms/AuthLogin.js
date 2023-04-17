@@ -43,6 +43,10 @@ const AuthLogin = () => {
   
   const [checked, setChecked] = React.useState(false);
 
+  const CustomAlert = React.forwardRef((props, ref) => {
+    return <Alert ref={ref} elevation={6} variant="filled" {...props} />;
+  });
+
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -137,7 +141,7 @@ const AuthLogin = () => {
             if (response.status === 200) {
               setSnackbar({
                 open: true,
-                message: "注册成功 将在三秒后跳转",
+                message: "注册成功 将在三秒后跳转至主页",
                 severity: "success",
               });
           
@@ -295,13 +299,12 @@ const AuthLogin = () => {
       onClose={() => setSnackbar({ ...snackbar, open: false })}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
     >
-      <Alert
-        onClose={() => setSnackbar({ ...snackbar, open: false })}
-        severity={snackbar.severity}
-        sx={{ width: "100%" }}
-      >
-        {snackbar.message}
-      </Alert>
+        <CustomAlert
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          severity={snackbar.severity}
+        >
+          {snackbar.message}
+        </CustomAlert>
     </Snackbar>
     </>
   );
