@@ -139,6 +139,14 @@ const AuthLogin = () => {
             const result = await response.json();
 
             if (response.status === 200) {
+
+              if (checked) {
+                localStorage.setItem("token", result.token);
+              } else {
+                sessionStorage.setItem("token", result.token);
+              }
+              
+
               setSnackbar({
                 open: true,
                 message: "注册成功 将在三秒后跳转至主页",
