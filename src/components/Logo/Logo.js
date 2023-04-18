@@ -22,7 +22,7 @@ const Logo = () => {
          *
          */
         <>
-            <h1 style={{  fontWeight: 'bold' }}>码头红书</h1>
+            <h1 style={{  fontWeight: 'bold' }}>红薯码头</h1>
         </>
     );
 };
