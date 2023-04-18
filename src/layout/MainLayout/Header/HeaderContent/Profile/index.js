@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { useRef, useState } from 'react';
+import axios from 'axios';
+import { useRef, useState, useEffect } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -60,6 +61,31 @@ const Profile = () => {
         // logout
     };
 
+    const [avatarUrl, setAvatarUrl] = useState(avatar1);
+
+    useEffect(() => {
+        const userId = localStorage.getItem('userId');
+        const token = localStorage.getItem('token');
+      
+        if (userId && token) {
+          axios
+            .get(`https://api.cloudepot.cn/api/avatar/${userId}.png`, {
+              headers: {
+                'X-Token': token,
+              },
+            })
+            .then((response) => {
+              if (response.status === 200) {
+                setAvatarUrl(response.request.responseURL);
+              }
+            })
+            .catch((error) => {
+              console.log('Error fetching avatar:', error);
+            });
+        }
+      }, []);
+      
+
     const anchorRef = useRef(null);
     const [open, setOpen] = useState(false);
     const handleToggle = () => {
@@ -97,8 +123,8 @@ const Profile = () => {
                 onClick={handleToggle}
             >
                 <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
-                    <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} />
-                    <Typography variant="subtitle1">John Doe</Typography>
+    <Avatar alt="profile user" src={avatarUrl} sx={{ width: 32, height: 32 }} />
+                    <Typography variant="subtitle1">用户名</Typography>
                 </Stack>
             </ButtonBase>
             <Popper
@@ -139,11 +165,11 @@ const Profile = () => {
                                             <Grid container justifyContent="space-between" alignItems="center">
                                                 <Grid item>
                                                     <Stack direction="row" spacing={1.25} alignItems="center">
-                                                        <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} />
+                                                    <Avatar alt="profile user" src={avatarUrl} sx={{ width: 32, height: 32 }} />
                                                         <Stack>
-                                                            <Typography variant="h6">John Doe</Typography>
+                                                            <Typography variant="h6">用户名</Typography>
                                                             <Typography variant="body2" color="textSecondary">
-                                                                UI/UX Designer
+                                                                个人简介
                                                             </Typography>
                                                         </Stack>
                                                     </Stack>
