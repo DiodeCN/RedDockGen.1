@@ -6,7 +6,6 @@ import CryptoJS from 'crypto-js';
 import {
   Button,
   Checkbox,
-  Divider,
   FormControlLabel,
   FormHelperText,
   Grid,
@@ -26,7 +25,6 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 
 // project import
-import FirebaseSocial from "./FirebaseSocial";
 import AnimateButton from "components/@extended/AnimateButton";
 
 // assets
