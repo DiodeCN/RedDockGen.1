@@ -1,8 +1,11 @@
-
 import { useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const LoginStatus = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+
     useEffect(() => {
         const checkToken = async () => {
             // 从 localStorage 和 sessionStorage 中读取 token
@@ -16,11 +19,16 @@ const LoginStatus = () => {
                 } catch (error) {
                     console.error('Error sending token:', error);
                 }
+            } else {
+                // 当 token 不存在且当前页面不是 /login 或 /register 时，跳转到 /login
+                if (location.pathname !== '/login' && location.pathname !== '/register') {
+                    navigate('/login');
+                }
             }
         };
 
         checkToken();
-    }, []);
+    }, [location, navigate]);
 
     return null;
 };
