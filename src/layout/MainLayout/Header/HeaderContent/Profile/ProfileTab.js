@@ -8,7 +8,7 @@ import { Edit, Person, AccountBalanceWallet, ExitToApp, HelpOutline } from '@mui
 
 // ==============================|| HEADER PROFILE - PROFILE TAB ||============================== //
 
-const ProfileTab = ({ handleLogout }) => {
+const ProfileTab = ({}) => { // Remove handleLogout from the parameter list
     const theme = useTheme();
 
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -16,6 +16,12 @@ const ProfileTab = ({ handleLogout }) => {
         setSelectedIndex(index);
     };
 
+    const handleLogout = () => {
+        sessionStorage.clear();
+        localStorage.clear();
+        window.location.reload();
+    };
+  
     return (
         <List component="nav" sx={{ p: 0, '& .MuiListItemIcon-root': { minWidth: 32 } }}>
             <ListItemButton selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}>
