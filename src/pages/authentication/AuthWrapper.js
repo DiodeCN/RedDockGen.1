@@ -34,7 +34,7 @@ const AuthWrapper = ({ children }) => (
     container
     justifyContent="center"
     alignItems="center"
-    sx={{ minHeight: { xs: 'calc(100vh - 180px)', md: 'calc(100vh - 180px)' } }}
+    sx={{ minHeight: { xs: 'calc(100vh - 150px)', md: 'calc(100vh - 180px)' } }}
 >
     <Grid item>
         <AuthCard>{children}</AuthCard>
