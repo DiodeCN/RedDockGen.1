@@ -20,6 +20,8 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
     minute,
     likes,
     favorites,
+    tittle,
+    sign,
     retweets
   } = tweet;
 
@@ -41,34 +43,36 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
     mb: 1
   }}
 >
-  <Box sx={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
-    <Avatar src={avatar_url} alt={`${name}'s avatar`} sx={{ mr: 1, width: 80, height: 80 }} />
+<Box sx={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
+    <Avatar src={avatar_url} alt={`${name}'s avatar`} sx={{ mr: 1, width: 75, height: 75 }} />
     <Box sx={{ display: "flex", flexDirection: "row" ,gap: "0.5rem"  }}>
       <Typography
         component="div"
         variant="subtitle2"
         sx={{ color: "primary.main", fontSize: "1.25rem" }}
       >
-        {name}
-        <br />
-        好耶
+        &nbsp;{name}
+        <br />   
+        <span style={{ backgroundColor: 'yellow', borderRadius: '5px', padding: '2px 5px' }}>
+        {tittle}
+      </span>
+      
       </Typography>
       <Typography
         component="div"
         variant="caption"
         sx={{ color: "secondary.main", fontSize: "1.25rem" }}
       >
+       &nbsp;  UID{id}     &nbsp;     {hour}:{minute}
+
         <br />               
-        @{id}
+        &nbsp;    “{sign}”  
       </Typography>
       <Typography
         component="div"
         variant="caption"
         sx={{ color: "#999", fontSize: "1.25rem" }}
       >
-                <br />
-
-        {hour}:{minute}
       </Typography>
     </Box>
   </Box>
