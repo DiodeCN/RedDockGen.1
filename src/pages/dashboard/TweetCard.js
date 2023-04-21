@@ -42,41 +42,39 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
   }}
 >
   <Box sx={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
-    <Avatar src={avatar_url} alt={`${name}'s avatar`} sx={{ mr: 1, width: 60, height: 60 }} />
-    <Box sx={{ display: "flex", flexDirection: "row" }}>
+    <Avatar src={avatar_url} alt={`${name}'s avatar`} sx={{ mr: 1, width: 80, height: 80 }} />
+    <Box sx={{ display: "flex", flexDirection: "row" ,gap: "0.5rem"  }}>
       <Typography
         component="div"
         variant="subtitle2"
         sx={{ color: "primary.main", fontSize: "1.25rem" }}
       >
         {name}
+        <br />
+        好耶
       </Typography>
       <Typography
         component="div"
         variant="caption"
-        sx={{ color: "secondary.main", fontSize: "1.12rem" }}
+        sx={{ color: "secondary.main", fontSize: "1.25rem" }}
       >
+        <br />               
         @{id}
       </Typography>
       <Typography
         component="div"
         variant="caption"
-        sx={{ color: "#999", fontSize: "1.12rem" }}
+        sx={{ color: "#999", fontSize: "1.25rem" }}
       >
+                <br />
+
         {hour}:{minute}
       </Typography>
     </Box>
   </Box>
 </Box>
 <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "0.5rem" }}>
-  <Box sx={{ mt: 1 }}>
-    <Typography
-      variant="caption"
-      sx={{ color: "#999", fontSize: "1rem" }}
-    >
-      签名签名签名签名钱钱钱
-    </Typography>
-  </Box>
+
       <CardContent>
         <Typography variant="body1" sx={{ fontSize: "1.2rem" }}>
           {content}
