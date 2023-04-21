@@ -23,6 +23,7 @@ const friends = {
             external: true,
             target: true
         },
+        /*
         {
             id: 'we',
             title: 'RCIT红码工合作社',
@@ -32,6 +33,7 @@ const friends = {
             external: true,
             target: true
         },
+       */
         {
             id: 'my',
             title: '极越文库',

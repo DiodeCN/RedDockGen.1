@@ -36,6 +36,7 @@ const AuthFooter = () => {
                     >
                        榆法糖
                     </Typography>
+                    {/*
                     <Typography
                         variant="subtitle2"
                         color="secondary"
@@ -46,6 +47,7 @@ const AuthFooter = () => {
                     >
                         RCIT红码工合作社
                     </Typography>
+                    */}
                     <Typography
                         variant="subtitle2"
                         color="secondary"
