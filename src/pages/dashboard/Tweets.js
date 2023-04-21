@@ -19,29 +19,14 @@ import {
   Comment
 } from '@mui/icons-material';
 import axios from 'axios';
+import TweetCard from "./TweetCard";
 
-
-const ProtectedComponent = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const isLoggedIn = checkLoggedIn(); // 您需要实现这个函数来检查用户是否已登录
-    if (!isLoggedIn) {
-      navigate("/login");
-    }
-  }, [navigate]);
-
-  // 保护的组件内容
-  return <div>Your protected content here</div>;
-};
 
 const Tweets = () => {
   const [tweets, setTweets] = useState([]);
   const [hotCount, setHotCount] = useState(0);
   const [comment, setcomment] = useState(0);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-
-
   
   useEffect(() => {
     const fetchData = async () => {
@@ -66,136 +51,31 @@ const Tweets = () => {
 
   const increaseHotCount = () => {
     setHotCount(hotCount + 1);
-    // Implement API call to update hot count in the backend.
   };
 
   return (
-    <>
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem", p: 4 }}>
-      {tweets.map(
-        ({
-          id,
-          avatar_url,
-          name,
-          content,
-          hours_since_post,
-          likes,
-          favorites,
-          retweets
-        }) => (
-          <Card
-            key={id}
-            sx={{
-              p: 2,
-              borderRadius: "12px",
-              boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
-              width: "100%"
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                mb: 1
-              }}
-            >
-              <Box
-                sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
-              >
-                <Avatar
-                  src={avatar_url}
-                  alt={`${name}'s avatar`}
-                  sx={{ mr: 1 }}
-                />
-                <Typography
-                  component="div"
-                  variant="subtitle2"
-                  sx={{ color: "primary.main", fontSize: "1.5rem" }}
-                >
-                  {name}
-                </Typography>
-                <Typography
-                  component="div"
-                  variant="caption"
-                  sx={{ color: "secondary.main", fontSize: "1.12rem" }}
-                >
-                  @{id}
-                </Typography>
-                <Typography
-                  component="div"
-                  variant="caption"
-                  sx={{ color: "#999", fontSize: "1.12rem" }}
-                >
-                  {hours_since_post}h
-                </Typography>
-              </Box>
-            </Box>
-            <CardContent>
-              <Typography variant="body1" sx={{ fontSize: "1.2rem" }}>
-                {content}
-              </Typography>
-            </CardContent>
-            <CardActions
-              sx={{ display: "flex", justifyContent: "space-between" }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  width: "100%"
-                }}
-              >
-                <IconButton aria-label="like" sx={{ flexGrow: 1 }}>
-                  <ThumbUp />
-                  <Typography variant="body2" sx={{ fontSize: "1.2rem" }}>
-                    {likes}
-                  </Typography>
-                </IconButton>
-                <IconButton aria-label="favorite" sx={{ flexGrow: 1 }}>
-                  <Star />
-                  <Typography variant="body2" sx={{ fontSize: "1.2rem" }}>
-                    {favorites}
-                  </Typography>
-                </IconButton>
-                <IconButton aria-label="retweet" sx={{ flexGrow: 1 }}>
-                  <Repeat />
-                  <Typography variant="body2" sx={{ fontSize: "1.2rem" }}>
-                    {retweets}
-                  </Typography>
-                </IconButton>
-                <IconButton aria-label="comment" sx={{ flexGrow: 1 }}>
-                  <Comment />
-                  {comment}
-                </IconButton>
-                <IconButton
-                  aria-label="hot count"
-                  sx={{ flexGrow: 1 }}
-                  onClick={increaseHotCount}
-                >
-                  <Visibility />
-                  <Typography variant="body2" sx={{ fontSize: "1.2rem" }}>
-                    {hotCount}
-                  </Typography>
-                </IconButton>
-              </Box>
-            </CardActions>
-          </Card>
-        )
-      )}
-    </Box>
-          <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={6000}
-        onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-      >
+    
+    <>      <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem", p: 4 }}>
+    {tweets.map((tweet) => (
+      <TweetCard
+        key={tweet.id}
+        tweet={tweet}
+        increaseHotCount={increaseHotCount}
+        hotCount={hotCount}
+        comment={comment}
+      />
+    ))}
+  </Box><Snackbar
+      open={snackbarOpen}
+      autoHideDuration={6000}
+      onClose={handleCloseSnackbar}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+    >
         <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
           An error occurred while fetching tweets.
         </Alert>
-      </Snackbar>
-    </>
+      </Snackbar></>
+
   );
 };
 export default Tweets;
