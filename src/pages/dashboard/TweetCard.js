@@ -16,7 +16,8 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
     avatar_url,
     name,
     content,
-    hours_since_post,
+    hour,
+    minute,
     likes,
     favorites,
     retweets
@@ -32,39 +33,50 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
         width: "100%"
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          mb: 1
-        }}
+<Box
+  sx={{
+    display: "flex",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    mb: 1
+  }}
+>
+  <Box sx={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
+    <Avatar src={avatar_url} alt={`${name}'s avatar`} sx={{ mr: 1, width: 60, height: 60 }} />
+    <Box sx={{ display: "flex", flexDirection: "row" }}>
+      <Typography
+        component="div"
+        variant="subtitle2"
+        sx={{ color: "primary.main", fontSize: "1.25rem" }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <Avatar src={avatar_url} alt={`${name}'s avatar`} sx={{ mr: 1 }} />
-          <Typography
-            component="div"
-            variant="subtitle2"
-            sx={{ color: "primary.main", fontSize: "1.5rem" }}
-          >
-            {name}
-          </Typography>
-          <Typography
-            component="div"
-            variant="caption"
-            sx={{ color: "secondary.main", fontSize: "1.12rem" }}
-          >
-            @{id}
-          </Typography>
-          <Typography
-            component="div"
-            variant="caption"
-            sx={{ color: "#999", fontSize: "1.12rem" }}
-          >
-            {hours_since_post}h
-          </Typography>
-        </Box>
-      </Box>
+        {name}
+      </Typography>
+      <Typography
+        component="div"
+        variant="caption"
+        sx={{ color: "secondary.main", fontSize: "1.12rem" }}
+      >
+        @{id}
+      </Typography>
+      <Typography
+        component="div"
+        variant="caption"
+        sx={{ color: "#999", fontSize: "1.12rem" }}
+      >
+        {hour}:{minute}
+      </Typography>
+    </Box>
+  </Box>
+</Box>
+<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "0.5rem" }}>
+  <Box sx={{ mt: 1 }}>
+    <Typography
+      variant="caption"
+      sx={{ color: "#999", fontSize: "1rem" }}
+    >
+      签名签名签名签名钱钱钱
+    </Typography>
+  </Box>
       <CardContent>
         <Typography variant="body1" sx={{ fontSize: "1.2rem" }}>
           {content}
@@ -104,9 +116,10 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
             {comment}
           </IconButton>
           <IconButton
-            aria-label="hot count"
-            sx={{ flexGrow: 1 }}
-            onClick={increaseHotCount}>
+        aria-label="hot count"
+        sx={{ flexGrow: 1 }}
+        onClick={increaseHotCount}
+      >
         <Visibility />
         <Typography variant="body2" sx={{ fontSize: "1.2rem" }}>
           {hotCount}
@@ -114,6 +127,7 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
       </IconButton>
     </Box>
   </CardActions>
+  </Box>
 </Card>
 );
 };

@@ -1,23 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import {
   Box,
-  Card,
-  CardContent,
-  CardActions,
-  IconButton,
-  Typography,
-  Avatar,
   Snackbar,
   Alert
 } from '@mui/material';
-import {
-  ThumbUp,
-  Star,
-  Repeat,
-  Visibility,
-  Comment
-} from '@mui/icons-material';
 import axios from 'axios';
 import TweetCard from "./TweetCard";
 
