@@ -147,13 +147,13 @@ const AuthLogin = () => {
 
               setSnackbar({
                 open: true,
-                message: "注册成功 将在三秒后跳转至主页",
+                message: "注册成功",
                 severity: "success",
               });
           
               setTimeout(() => {
                 window.location.href = "/";
-              }, 3000);
+              }, 1000);
             } else {
               setSnackbar({
                 open: true,
