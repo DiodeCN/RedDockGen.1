@@ -147,7 +147,7 @@ const AuthLogin = () => {
 
               setSnackbar({
                 open: true,
-                message: "注册成功",
+                message: "登录成功",
                 severity: "success",
               });
           
