@@ -29,6 +29,11 @@ const LoginStatus = () => {
                     }
                 } catch (error) {
                     console.error('Error sending token:', error);
+                    
+                    // 清除缓存并导航至 404 页面
+                    localStorage.removeItem('token');
+                    sessionStorage.removeItem('token');
+                    navigate('/404');
                 }
             } else {
                 // 当 token 不存在且当前页面不是 /login 或 /register 时，跳转到 /login
