@@ -25,7 +25,7 @@ const PageNotFound = () => {
         <Typography variant="h2" component="h2" gutterBottom>
           有些地方出了问题🥹
         </Typography>
-        <Typography variant="body1" component="p" gutterBottom>
+        <Typography variant="h2" component="h2" gutterBottom>
           {errorMessage}🥳
         </Typography>
         <Box mt={4}>
