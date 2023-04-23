@@ -17,12 +17,11 @@ const PageNotFound = () => {
         <Typography variant="h1" component="h1" gutterBottom>
           404
         </Typography>
-        <Typography variant="h5" component="h2" gutterBottom>
-          Oops! Page not found.
+        <Typography variant="h2" component="h2" gutterBottom>
+          总有哪些地方出了问题
         </Typography>
         <Typography variant="body1" component="p" gutterBottom>
-          The page you are looking for might have been removed, had its name
-          changed, or is temporarily unavailable.
+          这里是默认事件代码 如果您看到这个 说明可能是后端通信不正常
         </Typography>
         <Box mt={4}>
           <Button
@@ -30,7 +29,7 @@ const PageNotFound = () => {
             color="primary"
             onClick={() => navigate('/')}
           >
-            Go to Homepage
+            寻找帮助
           </Button>
         </Box>
       </Box>
