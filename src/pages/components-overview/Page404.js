@@ -32,9 +32,9 @@ const PageNotFound = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/login')}
           >
-            寻找帮助
+            闪电般归来😋
           </Button>
         </Box>
       </Box>
