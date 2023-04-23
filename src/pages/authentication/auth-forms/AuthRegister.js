@@ -131,6 +131,7 @@ const AuthRegister = () => {
       console.log("Response:", response.data);
 
       if (response.data.message === "user_registered_successfully") {
+        localStorage.setItem("token", response.data.token); // 添加这一行来存储 token
         setSnackbar({
           open: true,
           message: "注册成功",
