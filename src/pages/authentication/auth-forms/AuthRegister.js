@@ -61,12 +61,8 @@ const AuthRegister = () => {
   };
 
   const api = axios.create({
-    baseURL: "https://api.cloudepot.cn/",
-    headers: {
-      'Content-Type': 'application/json'
-    }
+    baseURL: "https://api.cloudepot.cn/"
   });
-  
 
   const CustomAlert = React.forwardRef((props, ref) => {
     return <Alert ref={ref} elevation={6} variant="filled" {...props} />;
@@ -123,13 +119,16 @@ const AuthRegister = () => {
   const registerUser = async (data) => {
     try {
       console.log("Sending data:", data);
+      const timestamp = new Date().toISOString();
 
       const response = await api.post("/api/register", {
         nickname: data.nickname,
         inviter: "#" + data.inviter,
         phoneNumber: "+86" + data.phoneNumber,
         verificationCode: data.verificationCode,
-        password: data.password
+        password: data.password,
+        Timestamp: timestamp, // 添加Timestamp字段
+
       });
 
       console.log("Response:", response.data);
