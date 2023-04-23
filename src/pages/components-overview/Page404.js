@@ -20,13 +20,13 @@ const PageNotFound = () => {
         minHeight="100vh"
       >
         <Typography variant="h1" component="h1" gutterBottom>
-          404
+          404😡
         </Typography>
         <Typography variant="h2" component="h2" gutterBottom>
-          总有哪些地方出了问题
+          有些地方出了问题🥹
         </Typography>
         <Typography variant="body1" component="p" gutterBottom>
-          {errorMessage}
+          {errorMessage}🥳
         </Typography>
         <Box mt={4}>
           <Button
