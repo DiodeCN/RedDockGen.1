@@ -16,6 +16,13 @@ const LoginStatus = () => {
                 try {
                     const response = await axios.post('https://api.cloudepot.cn/api/tokencheck', { token });
                     console.log(response.data);
+
+                    // 如果响应状态不是 200，则清除缓存并导航至 404 页面
+                    if (response.status !== 200) {
+                        localStorage.removeItem('token');
+                        sessionStorage.removeItem('token');
+                        navigate('/404');
+                    }
                 } catch (error) {
                     console.error('Error sending token:', error);
                 }
