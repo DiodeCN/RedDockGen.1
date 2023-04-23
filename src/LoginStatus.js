@@ -36,8 +36,8 @@ const LoginStatus = () => {
                     navigate('/404');
                 }
             } else {
-                // 当 token 不存在且当前页面不是 /login 或 /register 时，跳转到 /login
-                if (location.pathname !== '/login' && location.pathname !== '/register') {
+                // 当 token 不存在且当前页面不是 /login 或 /register 或 /404 时，跳转到 /login
+                if (location.pathname !== '/login' && location.pathname !== '/register' && location.pathname !== '/404') {
                     navigate('/login');
                 }
             }
