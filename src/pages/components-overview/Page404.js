@@ -4,6 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 const PageNotFound = () => {
   const navigate = useNavigate();
+  const responseStatus = localStorage.getItem('responseStatus');
+  const defaultMessage = '这里是默认事件代码 如果您看到这个 说明见鬼了';
+  const errorMessage = responseStatus
+    ? `错误信息：${responseStatus}`
+    : defaultMessage;
 
   return (
     <Container maxWidth="md">
@@ -21,7 +26,7 @@ const PageNotFound = () => {
           总有哪些地方出了问题
         </Typography>
         <Typography variant="body1" component="p" gutterBottom>
-          这里是默认事件代码 如果您看到这个 说明可能是后端通信不正常
+          {errorMessage}
         </Typography>
         <Box mt={4}>
           <Button
