@@ -14,7 +14,7 @@ const LoginStatus = () => {
             if (token) {
                 // 发送 token 到指定 API
                 try {
-                    const response = await axios.post('https://api.cloudepot.cn/api/token', { token });
+                    const response = await axios.post('https://api.cloudepot.cn/api/tokencheck', { token });
                     console.log(response.data);
                 } catch (error) {
                     console.error('Error sending token:', error);
