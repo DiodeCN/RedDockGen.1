@@ -21,6 +21,10 @@ const LoginStatus = () => {
                     if (response.status !== 200) {
                         localStorage.removeItem('token');
                         sessionStorage.removeItem('token');
+                        
+                        // 将 response.status 写入浏览器缓存
+                        localStorage.setItem('responseStatus', response.status);
+                        
                         navigate('/404');
                     }
                 } catch (error) {
