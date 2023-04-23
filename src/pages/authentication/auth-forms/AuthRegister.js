@@ -127,7 +127,7 @@ const AuthRegister = () => {
         phoneNumber: "+86" + data.phoneNumber,
         verificationCode: data.verificationCode,
         password: data.password,
-        Timestamp: timestamp, // 添加Timestamp字段
+        timestamp: timestamp, // 添加Timestamp字段
 
       });
 
