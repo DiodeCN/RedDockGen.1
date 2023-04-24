@@ -83,7 +83,7 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
 
       <CardContent>
         <Typography variant="body1" sx={{ fontSize: "1.2rem" }}>
-          {content}
+        <ReactMarkdown children={content} />
         </Typography>
       </CardContent>
       <CardActions
