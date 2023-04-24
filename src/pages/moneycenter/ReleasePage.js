@@ -111,6 +111,7 @@ const ReleasePage = () => {
           <FormControlLabel value="option1" control={<Radio />} label="分享" />
           <FormControlLabel value="option2" control={<Radio />} label="请求" />
           <FormControlLabel value="option3" control={<Radio />} label="闲聊" />
+          <FormControlLabel value="option4" control={<Radio />} label="日志" />
         </RadioGroup>
       </FormControl>
       <Button fullWidth variant="contained" color="primary" onClick={handleSubmit}>
