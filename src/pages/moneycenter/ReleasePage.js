@@ -26,15 +26,26 @@ const ReleasePage = () => {
 
   const handleTextChange = (event) => {
     const { value } = event.target;
-    // 检测输入的最后一个字符是否是换行符
-    const lastChar = value.charAt(value.length - 1);
-    if (lastChar === '\n') {
-      // 如果最后一个字符是换行符，则在其后添加另一个换行符
-      const newValue = value.slice(0, -1) + '\n\n' + value.slice(-1);
-      event.target.value = newValue;
+    const prevValue = markdownText;
+  
+    // 当用户添加一个换行符时，自动在其后添加一个换行符
+    if (value.length > prevValue.length && value.charAt(value.length - 1) === '\n') {
+      const secondLastChar = value.charAt(value.length - 2);
+      if (secondLastChar !== '\n') {
+        event.target.value = value.slice(0, -1) + '\n\n';
+      }
     }
+    // 当用户删除一个换行符时，自动删除前面的换行符（如果存在）
+    else if (value.length < prevValue.length && prevValue.charAt(prevValue.length - 1) === '\n') {
+      const secondLastChar = prevValue.charAt(prevValue.length - 2);
+      if (secondLastChar === '\n') {
+        event.target.value = value.slice(0, -1);
+      }
+    }
+  
     setMarkdownText(event.target.value);
   };
+  
   
 
   const handleInsertClick = (insertion) => {
