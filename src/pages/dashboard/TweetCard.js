@@ -9,6 +9,8 @@ import {
   Avatar
 } from "@mui/material";
 import { ThumbUp, Star, Repeat, Visibility, Comment } from "@mui/icons-material";
+import ReactMarkdown from 'react-markdown';
+
 
 const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
   const {
