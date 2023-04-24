@@ -72,6 +72,9 @@ const ReleasePage = () => {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             文本编辑
           </Typography>
+          <Button onClick={() => handleInsertClick('# 芝士H1 标题\n')}>H1</Button>
+          <Button onClick={() => handleInsertClick('## 芝士H2 标题\n')}>H2</Button>
+          <Button onClick={() => handleInsertClick('### 芝士H3 标题\n')}>H3</Button>
           <Button onClick={() => handleInsertClick('**芝士粗体**')}>粗体</Button>
           <Button onClick={() => handleInsertClick('_芝士斜体_')}>斜体</Button>
           <Button onClick={() => handleInsertClick('~~芝士删除线~~')}>删除线</Button>
