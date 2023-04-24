@@ -52,11 +52,11 @@ const ReleasePage = () => {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             文本编辑
           </Typography>
-          <Button onClick={() => handleInsertClick('**粗体**')}>粗体</Button>
-          <Button onClick={() => handleInsertClick('_斜体_')}>斜体</Button>
-          <Button onClick={() => handleInsertClick('~~删除线~~')}>删除线</Button>
-          <Button onClick={() => handleInsertClick('\n\n- 列表项')}>列表项</Button>
-          <Button onClick={() => handleInsertClick('\n\n1. 有序列表项')}>有序列表项</Button>
+          <Button onClick={() => handleInsertClick('**芝士粗体**')}>粗体</Button>
+          <Button onClick={() => handleInsertClick('_芝士斜体_')}>斜体</Button>
+          <Button onClick={() => handleInsertClick('~~芝士删除线~~')}>删除线</Button>
+          <Button onClick={() => handleInsertClick('\n\n- 芝士列表项')}>列表项</Button>
+          <Button onClick={() => handleInsertClick('\n\n1. 芝士有序列表项')}>有序列表项</Button>
         </Toolbar>
       </AppBar>
       <TextField
