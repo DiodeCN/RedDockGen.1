@@ -5,6 +5,10 @@ import {
   Button,
   Card,
   CardContent,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
   TextField,
   Toolbar,
   Typography,
@@ -34,9 +38,15 @@ const ReleasePage = () => {
     }
   };
 
-  const handleArticleTypeChange = (event) => {
+   const handleArticleTypeChange = (event) => {
     setArticleType(event.target.value);
   };
+
+  
+  const handleSubmit = () => {
+    // 在这里处理提交逻辑
+  };
+
 
   return (
     <Box
@@ -74,6 +84,7 @@ const ReleasePage = () => {
         sx={{ borderRadius: '12px' }}
         inputRef={textAreaRef}
       />
+
       <Card
         sx={{
           borderRadius: '12px',
@@ -81,10 +92,28 @@ const ReleasePage = () => {
           width: '100%',
         }}
       >
+
         <CardContent>
           <ReactMarkdown children={markdownText} />
         </CardContent>
       </Card>
+      <FormControl component="fieldset">
+        <RadioGroup
+          row
+          aria-label="article-type"
+          name="articleType"
+          value={articleType}
+          onChange={handleArticleTypeChange}
+          sx={{ justifyContent: 'center' }}
+        >
+          <FormControlLabel value="option1" control={<Radio />} label="分享" />
+          <FormControlLabel value="option2" control={<Radio />} label="请求" />
+          <FormControlLabel value="option3" control={<Radio />} label="闲聊" />
+        </RadioGroup>
+      </FormControl>
+      <Button fullWidth variant="contained" color="primary" onClick={handleSubmit}>
+        发送
+      </Button>
     </Box>
   );
 };
