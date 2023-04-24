@@ -18,6 +18,8 @@ const insertTextAtEnd = (textArea, newText) => {
 
 const ReleasePage = () => {
   const [markdownText, setMarkdownText] = useState('');
+  const [articleType, setArticleType] = useState('选项一');
+
   const textAreaRef = React.createRef();
 
   const handleTextChange = (event) => {
