@@ -6,16 +6,14 @@ import {
   Card,
   CardContent,
   FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
+  MenuItem,
+  Select,
   TextField,
   Toolbar,
   Typography,
 } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
 import gfm from 'remark-gfm'; 
-
 
 const insertTextAtEnd = (textArea, newText) => {
   const { value } = textArea;
@@ -24,7 +22,7 @@ const insertTextAtEnd = (textArea, newText) => {
 
 const ReleasePage = () => {
   const [markdownText, setMarkdownText] = useState('');
-  const [articleType, setArticleType] = useState('选项一');
+  const [articleType, setArticleType] = useState('分享');
 
   const textAreaRef = React.createRef();
 
@@ -40,15 +38,13 @@ const ReleasePage = () => {
     }
   };
 
-   const handleArticleTypeChange = (event) => {
+  const handleArticleTypeChange = (event) => {
     setArticleType(event.target.value);
   };
 
-  
   const handleSubmit = () => {
     // 在这里处理提交逻辑
   };
-
 
   return (
     <Box
@@ -94,31 +90,30 @@ const ReleasePage = () => {
           width: '100%',
         }}
       >
-
         <CardContent>
-        <ReactMarkdown remarkPlugins={[gfm]} children={markdownText} /> {/* 使用remark-gfm插件 */}
+          <ReactMarkdown remarkPlugins={[gfm]} children={markdownText} />
         </CardContent>
       </Card>
-      <FormControl component="fieldset">
-        <RadioGroup
-          row
-          aria-label="article-type"
-          name="articleType"
+
+      <FormControl fullWidth sx={{marginTop: '1rem'}}>
+        <Select
+          labelId="article-type"
+          id="article-type-select"
           value={articleType}
           onChange={handleArticleTypeChange}
-          sx={{ justifyContent: 'center' }}
-        >
-          <FormControlLabel value="option1" control={<Radio />} label="分享" />
-          <FormControlLabel value="option2" control={<Radio />} label="请求" />
-          <FormControlLabel value="option3" control={<Radio />} label="闲聊" />
-          <FormControlLabel value="option4" control={<Radio />} label="日志" />
-        </RadioGroup>
-      </FormControl>
-      <Button fullWidth variant="contained" color="primary" onClick={handleSubmit}>
-        发送
-      </Button>
-    </Box>
-  );
+          label="文章类型"
+          >
+          <MenuItem value="分享">分享</MenuItem>
+          <MenuItem value="请求">请求</MenuItem>
+          <MenuItem value="闲聊">闲聊</MenuItem>
+          <MenuItem value="日志">日志</MenuItem>
+          </Select>
+          </FormControl>
+          <Button fullWidth variant="contained" color="primary" onClick={handleSubmit} sx={{marginTop: '1rem'}}>
+    发送
+  </Button>
+</Box>
+);
 };
 
 export default ReleasePage;
