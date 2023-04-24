@@ -11,13 +11,9 @@ import {
 } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
 
-const insertTextAtCursor = (textArea, newText) => {
-  const { selectionStart, selectionEnd, value } = textArea;
-  const before = value.substring(0, selectionStart);
-  const after = value.substring(selectionEnd, value.length);
-
-  textArea.value = before + newText + after;
-  textArea.setSelectionRange(selectionStart + newText.length, selectionStart + newText.length);
+const insertTextAtEnd = (textArea, newText) => {
+  const { value } = textArea;
+  textArea.value = value + newText;
 };
 
 const ReleasePage = () => {
@@ -25,33 +21,13 @@ const ReleasePage = () => {
   const textAreaRef = React.createRef();
 
   const handleTextChange = (event) => {
-    const { value } = event.target;
-    const prevValue = markdownText;
-  
-    // 当用户添加一个换行符时，自动在其后添加一个换行符
-    if (value.length > prevValue.length && value.charAt(value.length - 1) === '\n') {
-      const secondLastChar = value.charAt(value.length - 2);
-      if (secondLastChar !== '\n') {
-        event.target.value = value.slice(0, -1) + '\n\n';
-      }
-    }
-    // 当用户删除一个换行符时，自动删除前面的换行符（如果存在）
-    else if (value.length < prevValue.length && prevValue.charAt(prevValue.length - 1) === '\n') {
-      const secondLastChar = prevValue.charAt(prevValue.length - 2);
-      if (secondLastChar === '\n') {
-        event.target.value = value.slice(0, -1);
-      }
-    }
-  
     setMarkdownText(event.target.value);
   };
-  
-  
 
   const handleInsertClick = (insertion) => {
     const textArea = textAreaRef.current;
     if (textArea) {
-      insertTextAtCursor(textArea, insertion);
+      insertTextAtEnd(textArea, insertion);
       setMarkdownText(textArea.value);
     }
   };
