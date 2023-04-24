@@ -46,8 +46,6 @@ const ReleasePage = () => {
 内容 2
 `;
 
-
-
   const textAreaRef = React.createRef();
 
   const handleTextChange = (event) => {
@@ -197,9 +195,10 @@ const ReleasePage = () => {
             <CloseIcon />
           </IconButton>
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers sx={{ overflowX: "hidden", maxWidth: "100%" }}>
           <ReactMarkdown remarkPlugins={[gfm]} children={mdDocument} />
         </DialogContent>
+
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             确定

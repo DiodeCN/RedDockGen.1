@@ -95,7 +95,7 @@ const Tweets = () => {
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
         <Alert onClose={handleCloseSnackbar} severity="error" sx={{ width: '100%' }}>
-          An error occurred while fetching tweets.
+          获取文章失败。
         </Alert>
       </Snackbar>
     </>
