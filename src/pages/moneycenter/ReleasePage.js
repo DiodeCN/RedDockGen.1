@@ -25,8 +25,17 @@ const ReleasePage = () => {
   const textAreaRef = React.createRef();
 
   const handleTextChange = (event) => {
+    const { value } = event.target;
+    // 检测输入的最后一个字符是否是换行符
+    const lastChar = value.charAt(value.length - 1);
+    if (lastChar === '\n') {
+      // 如果最后一个字符是换行符，则在其后添加另一个换行符
+      const newValue = value.slice(0, -1) + '\n\n' + value.slice(-1);
+      event.target.value = newValue;
+    }
     setMarkdownText(event.target.value);
   };
+  
 
   const handleInsertClick = (insertion) => {
     const textArea = textAreaRef.current;
