@@ -14,6 +14,8 @@ import {
   Typography,
 } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm'; 
+
 
 const insertTextAtEnd = (textArea, newText) => {
   const { value } = textArea;
@@ -94,7 +96,7 @@ const ReleasePage = () => {
       >
 
         <CardContent>
-          <ReactMarkdown children={markdownText} />
+        <ReactMarkdown remarkPlugins={[gfm]} children={markdownText} /> {/* 使用remark-gfm插件 */}
         </CardContent>
       </Card>
       <FormControl component="fieldset">
