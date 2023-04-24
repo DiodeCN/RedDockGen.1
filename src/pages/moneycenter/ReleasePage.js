@@ -129,6 +129,15 @@ const ReleasePage = () => {
         fullWidth
         variant="contained"
         color="primary"
+        sx={{ marginTop: "1rem" }}
+      >
+        分类细则
+      </Button>
+
+      <Button
+        fullWidth
+        variant="contained"
+        color="primary"
         onClick={handleSubmit}
         sx={{ marginTop: "1rem" }}
       >
