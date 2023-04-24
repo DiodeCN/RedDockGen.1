@@ -20,7 +20,7 @@ import ReactMarkdown from "react-markdown";
 const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
   const {
     id,
-    avatar_url,
+    senderUID,
     name,
     content,
     hour,
@@ -52,10 +52,11 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
       >
         <Box sx={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
           <Avatar
-            src={avatar_url}
-            alt={`${name}'s avatar`}
+            src={`https://api.cloudepot.cn/api/avatar/${senderUID}.png`}
+            alt={`${senderUID}'s avatar`}
             sx={{ mr: 1, width: 75, height: 75 }}
           />
+
           <Box sx={{ display: "flex", flexDirection: "row", gap: "0.5rem" }}>
             <Typography
               component="div"
@@ -100,7 +101,7 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
         }}
       >
         <CardContent>
-          <Typography variant="body1" sx={{ fontSize: "1.2rem" }}>
+          <Typography variant="body1"  component="div" sx={{ fontSize: "1.2rem" }}>
             <ReactMarkdown children={content} />
           </Typography>
         </CardContent>
