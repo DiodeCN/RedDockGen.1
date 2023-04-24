@@ -34,6 +34,10 @@ const ReleasePage = () => {
     }
   };
 
+  const handleArticleTypeChange = (event) => {
+    setArticleType(event.target.value);
+  };
+
   return (
     <Box
       sx={{
