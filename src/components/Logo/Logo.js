@@ -22,7 +22,7 @@ const Logo = () => {
          * <img src={logo} alt="Mantis" width="100" />
          *
          */
-        <img src={logo} alt="Logo" />
+        // <img src={logo} alt="Logo" width="5%"  />
    
     );
 };
