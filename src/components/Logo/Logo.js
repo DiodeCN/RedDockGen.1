@@ -1,5 +1,6 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
+import logo from './Logo.svg';
 
 /**
  * if you want to use image instead of <svg> uncomment following.
@@ -21,9 +22,8 @@ const Logo = () => {
          * <img src={logo} alt="Mantis" width="100" />
          *
          */
-        <>
-            <h1 style={{  fontWeight: 'bold' }}>红薯码头</h1>
-        </>
+        <img src={logo} alt="Logo" />
+   
     );
 };
 
