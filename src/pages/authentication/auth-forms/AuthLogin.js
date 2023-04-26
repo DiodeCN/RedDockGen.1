@@ -129,28 +129,28 @@ const AuthLogin = () => {
                 timestamp,
                 email: "+86"+email,
                 password,
-                encrypted: encryptedData, // Change this line
+                encrypted: encryptedData,
               }),
             });
-        
-
+            
             const result = await response.json();
-
+            
             if (response.status === 200) {
-
+            
               if (checked) {
                 localStorage.setItem("token", result.token);
+                localStorage.setItem("uid", result.uid); // 添加这一行来存储 uid
               } else {
                 sessionStorage.setItem("token", result.token);
+                sessionStorage.setItem("uid", result.uid); // 添加这一行来存储 uid
               }
-              
-
+            
               setSnackbar({
                 open: true,
                 message: "登录成功",
                 severity: "success",
               });
-          
+            
               setTimeout(() => {
                 window.location.href = "/";
               }, 1000);
@@ -160,7 +160,7 @@ const AuthLogin = () => {
                 message: result.message || "登录失败",
                 severity: "error",
               });
-            }
+            }            
           };
           return (
 
