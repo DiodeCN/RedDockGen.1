@@ -47,6 +47,9 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
     }
   }, []);
 
+  const encodedToken = encodeURIComponent(token);
+
+
   
 
   return (
@@ -69,7 +72,7 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
       >
         <Box sx={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
           <Avatar
-            src={`https://avatar.cloudepot.cn/api/${senderUID}?token=${token}`}
+            src={`https://avatar.cloudepot.cn/api/${senderUID}?token=${encodedToken}`}
             alt={`${name}'s avatar`}
             sx={{ mr: 1, width: 75, height: 75 }}
           />
