@@ -34,8 +34,6 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
 
   
   const [token, setToken] = useState(null);
-  const [avatarUrl, setAvatarUrl] = useState(null);
-
 
   useEffect(() => {
     // Retrieve token from sessionStorage or localStorage
@@ -49,32 +47,7 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
     }
   }, []);
 
-  const fetchAvatar = async (senderUID) => {
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": token
-      },
-    };
-    const response = await fetch(`https://avatar.cloudepot.cn/api/${senderUID}`, requestOptions);
-    return response;
-  };
-
-  useEffect(() => {
-    if (token) {
-      fetchAvatar(senderUID).then((response) => {
-        if (response.ok) {
-          response.blob().then((blob) => {
-            const url = URL.createObjectURL(blob);
-            setAvatarUrl(url);
-          });
-        } else {
-          console.error("Failed to fetch avatar:", response.status);
-        }
-      });
-    }
-  }, [token]);
+  
 
   return (
     <Card
@@ -96,7 +69,7 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
       >
         <Box sx={{ display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
           <Avatar
-            src={avatarUrl}
+            src={`https://avatar.cloudepot.cn/api/${senderUID}`}
             alt={`${name}'s avatar`}
             sx={{ mr: 1, width: 75, height: 75 }}
           />
