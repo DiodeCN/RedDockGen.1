@@ -26,6 +26,10 @@ const LoginStatus = () => {
                         localStorage.setItem('responseStatus', "你被封号啦");
                         
                         navigate('/404');
+                    } else {
+                        // 当响应状态为 200 时，解析 uid 并存储在浏览器缓存中
+                        const uid = response.data.uid;
+                        localStorage.setItem('uid', uid);
                     }
                 } catch (error) {
                     console.error('Error sending token:', error);
