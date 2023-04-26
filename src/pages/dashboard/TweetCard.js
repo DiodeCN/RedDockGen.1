@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Card,
@@ -31,6 +31,41 @@ const TweetCard = ({ tweet, increaseHotCount, hotCount, comment }) => {
     sign,
     retweets
   } = tweet;
+
+  
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    // Retrieve token from sessionStorage or localStorage
+    const sessionToken = sessionStorage.getItem("token");
+    const localToken = localStorage.getItem("token");
+
+    if (sessionToken) {
+      setToken(sessionToken);
+    } else if (localToken) {
+      setToken(localToken);
+    }
+  }, []);
+
+  const fetchAvatar = async (senderUID) => {
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token
+      },
+    };
+    const response = await fetch(`https://avatar.cloudepot.cn/api/${senderUID}`, requestOptions);
+    return response;
+  };
+
+  useEffect(() => {
+    if (token) {
+      fetchAvatar(senderUID).then((response) => {
+        // Handle response, e.g., set the avatar URL in the state
+      });
+    }
+  }, [token]);
 
   return (
     <Card
