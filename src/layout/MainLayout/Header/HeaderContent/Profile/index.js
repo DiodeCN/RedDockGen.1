@@ -56,12 +56,15 @@ function a11yProps(index) {
 
 const Profile = () => {
     const theme = useTheme();
+    const userId = sessionStorage.getItem('userId');
+    const [token, setToken] = useState(sessionStorage.getItem('token') || localStorage.getItem('token'));
+    const [avatarUrl, setAvatarUrl] = useState(null);
+    const [isTokenReady, setIsTokenReady] = useState(false);
 
     const handleLogout = async () => {
         // logout
     };
 
-    const [avatarUrl, setAvatarUrl] = useState(avatar1);
 
     useEffect(() => {
         const userId = localStorage.getItem('userId');
