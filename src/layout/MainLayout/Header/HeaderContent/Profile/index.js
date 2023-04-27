@@ -201,7 +201,7 @@ const Profile = () => {
               onClick={handleAvatarClick}
               sx={{ width: "100%" }}
             >
-              更换头像
+              上传头像
             </Button>
           </Box>
         </Modal>
