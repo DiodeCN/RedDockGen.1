@@ -166,8 +166,8 @@ const Profile = () => {
               backgroundColor: "background.default",
               boxShadow: theme.customShadows.z16,
               borderRadius: "12px",
-              width: "300px",
-              height: "300px",
+              width: "450px",
+              height: "400px",
               outline: "none",
               p: 2,
               display: "flex",
@@ -190,7 +190,7 @@ const Profile = () => {
             <Avatar
               alt="profile user"
               src={avatarUrl}
-              sx={{ width: 120, height: 120 }}
+              sx={{ width: 240, height: 240 }}
             />
             <Typography variant="h5" id="modal-title">
               用户名
@@ -202,6 +202,14 @@ const Profile = () => {
               sx={{ width: "100%" }}
             >
               上传头像
+            </Button>
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={handleAvatarClick}
+              sx={{ width: "100%" }}
+            >
+              随机头像
             </Button>
           </Box>
         </Modal>
