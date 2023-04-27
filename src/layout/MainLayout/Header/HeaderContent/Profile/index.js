@@ -171,6 +171,7 @@ const Profile = () => {
               outline: "none",
               p: 2,
               display: "flex",
+              opacity: 0.72,
               flexDirection: "column",
               alignItems: "center",
               gap: 2
@@ -190,7 +191,8 @@ const Profile = () => {
             <Avatar
               alt="profile user"
               src={avatarUrl}
-              sx={{ width: 240, height: 240 }}
+              sx={{ width: 240, height: 240, opacity: 0.9, //添加opacity属性
+            }}
             />
             <Typography variant="h5" id="modal-title">
               用户名
