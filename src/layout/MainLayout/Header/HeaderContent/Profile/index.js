@@ -191,10 +191,14 @@ const Profile = () => {
             <Typography variant="h5" id="modal-title">
               用户名
             </Typography>
-            <Button variant="outlined" size="small" onClick={handleAvatarClick}>
-  更换头像
-</Button>
-
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={handleAvatarClick}
+              sx={{ width: "100%" }}
+            >
+              更换头像
+            </Button>
           </Box>
         </Modal>
 
@@ -202,7 +206,7 @@ const Profile = () => {
           <Avatar
             alt="profile user"
             src={avatarUrl}
-            sx={{ width: 32, height: 32 }}
+            sx={{ width: "32", height: 32 }}
             onClick={handleAvatarClick}
           />
           <Typography variant="subtitle1">用户名</Typography>
