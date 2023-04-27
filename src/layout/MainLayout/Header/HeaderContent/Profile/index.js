@@ -191,9 +191,10 @@ const Profile = () => {
             <Typography variant="h5" id="modal-title">
               用户名
             </Typography>
-            <Typography variant="body1" id="modal-description">
-              更换头像
-            </Typography>
+            <Button variant="outlined" size="small" onClick={handleAvatarClick}>
+  更换头像
+</Button>
+
           </Box>
         </Modal>
 
