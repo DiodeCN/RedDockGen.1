@@ -132,12 +132,13 @@ const Profile = () => {
                 aria-haspopup="true"
                 onClick={handleToggle}
             >
-                            <Modal
-        open={isModalOpen}
-        onClose={handleModalClose}
-        aria-labelledby="modal-title"
-        aria-describedby="modal-description"
-      >
+<Modal
+  open={isModalOpen}
+  onClose={handleModalClose}
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
+  onClick={(e) => e.stopPropagation()}
+>
         <Box
           sx={{
             position: 'absolute',
