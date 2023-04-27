@@ -78,6 +78,9 @@ const Profile = () => {
   const [isTokenReady, setIsTokenReady] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [userInfo, setUserInfo] = useState({ phoneNumber: "", nickname: "" });
+
+
   const handleAvatarClick = () => {
     setIsModalOpen(true);
   };
@@ -108,6 +111,23 @@ const Profile = () => {
         })
         .finally(() => {
           setIsTokenReady(true);
+        });
+    }
+  }, [token, userId]);
+
+  useEffect(() => {
+    if (token) {
+      axios
+        .get(
+          `https://avatar.cloudepot.cn/api/userinfo/${userId}?token=${encodeURIComponent(
+            token
+          )}`
+        )
+        .then((response) => {
+          setUserInfo(response.data);
+        })
+        .catch((error) => {
+          console.log("Error fetching user info:", error);
         });
     }
   }, [token, userId]);
