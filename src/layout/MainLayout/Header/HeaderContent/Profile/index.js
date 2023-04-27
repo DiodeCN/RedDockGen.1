@@ -117,9 +117,12 @@ const Profile = () => {
 
   useEffect(() => {
     if (token) {
+      // Convert userId to a 12-byte hexadecimal string
+      const hexUserId = userId.padStart(24, '0');
+  
       axios
         .get(
-          `https://avatar.cloudepot.cn/api/userinfo/${userId}?token=${encodeURIComponent(
+          `https://avatar.cloudepot.cn/api/userinfo/${hexUserId}?token=${encodeURIComponent(
             token
           )}`
         )
@@ -131,6 +134,7 @@ const Profile = () => {
         });
     }
   }, [token, userId]);
+  
 
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
