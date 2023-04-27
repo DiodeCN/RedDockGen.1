@@ -60,6 +60,16 @@ const Profile = () => {
     const [token, setToken] = useState(sessionStorage.getItem('token') || localStorage.getItem('token'));
     const [avatarUrl, setAvatarUrl] = useState(null);
     const [isTokenReady, setIsTokenReady] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleAvatarClick = () => {
+      setIsModalOpen(true);
+    };
+  
+    const handleModalClose = () => {
+      setIsModalOpen(false);
+    };
+  
 
     const handleLogout = async () => {
         // logout
