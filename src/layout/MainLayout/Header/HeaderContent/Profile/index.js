@@ -56,7 +56,7 @@ function a11yProps(index) {
 
 const Profile = () => {
     const theme = useTheme();
-    const userId = sessionStorage.getItem('userId');
+    const userId = sessionStorage.getItem('uid');
     const [token, setToken] = useState(sessionStorage.getItem('token') || localStorage.getItem('token'));
     const [avatarUrl, setAvatarUrl] = useState(null);
     const [isTokenReady, setIsTokenReady] = useState(false);
