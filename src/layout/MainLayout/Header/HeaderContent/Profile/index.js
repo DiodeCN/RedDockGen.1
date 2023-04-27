@@ -206,7 +206,7 @@ const Profile = () => {
           <Avatar
             alt="profile user"
             src={avatarUrl}
-            sx={{ width: 48, height: 48 }}
+            sx={{ width: 38, height: 38 }}
             onClick={handleAvatarClick}
           />
           <Typography variant="subtitle1">用户名</Typography>
