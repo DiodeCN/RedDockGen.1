@@ -253,13 +253,13 @@ const Profile = () => {
                             spacing={1.25}
                             alignItems="center"
                           >
-<ButtonBase onClick={handleAvatarClick}>
-  <Avatar
-    alt="profile user"
-    src={avatarUrl}
-    sx={{ width: 32, height: 32 }}
-  />
-</ButtonBase>
+                            <ButtonBase onClick={handleAvatarClick}>
+                              <Avatar
+                                alt="profile user"
+                                src={avatarUrl}
+                                sx={{ width: 32, height: 32 }}
+                              />
+                            </ButtonBase>
 
                             <Stack>
                               <Typography variant="h6">用户名</Typography>
