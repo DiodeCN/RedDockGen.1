@@ -87,8 +87,12 @@ const Profile = () => {
   };
 
   const handleLogout = async () => {
-    // logout
+    sessionStorage.clear();
+    localStorage.clear();
+    window.location.reload();
   };
+
+  
 
   useEffect(() => {
     if (token) {
