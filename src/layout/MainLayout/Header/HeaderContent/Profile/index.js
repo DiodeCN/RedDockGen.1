@@ -17,8 +17,12 @@ import {
     Stack,
     Tab,
     Tabs,
-    Typography
+    Typography,
+    Modal
 } from '@mui/material';
+
+import { Close } from '@mui/icons-material';
+
 
 // project import
 import MainCard from 'components/MainCard';
