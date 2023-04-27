@@ -67,27 +67,20 @@ const Profile = () => {
 
 
     useEffect(() => {
-        const userId = localStorage.getItem('userId');
-        const token = localStorage.getItem('token');
-      
-        if (userId && token) {
-          axios
-            .get(`https://api.cloudepot.cn/api/avatar/${userId}.png`, {
-              headers: {
-                'X-Token': token,
-              },
-            })
-            .then((response) => {
-              if (response.status === 200) {
-                setAvatarUrl(response.request.responseURL);
-              }
-            })
-            .catch((error) => {
-              console.log('Error fetching avatar:', error);
-            });
+        if (token) {
+            axios
+                .get(`https://avatar.cloudepot.cn/api/${userId}?token=${encodeURIComponent(token)}`)
+                .then((response) => {
+                    setAvatarUrl(response.request.responseURL);
+                })
+                .catch((error) => {
+                    console.log('Error fetching avatar:', error);
+                })
+                .finally(() => {
+                    setIsTokenReady(true);
+                });
         }
-      }, []);
-      
+    }, [token, userId]);
 
     const anchorRef = useRef(null);
     const [open, setOpen] = useState(false);
