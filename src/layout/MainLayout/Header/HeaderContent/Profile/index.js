@@ -157,9 +157,17 @@ const Profile = () => {
             gap: 2,
           }}
         >
-          <IconButton aria-label="close modal" onClick={handleModalClose} sx={{ position: 'absolute', top: '8px', right: '8px' }}>
-            <Close />
-          </IconButton>
+<IconButton
+  aria-label="close modal"
+  onClick={(event) => {
+    event.stopPropagation();
+    handleModalClose();
+  }}
+  sx={{ position: 'absolute', top: '8px', right: '8px' }}
+>
+  <Close />
+</IconButton>
+
           <Avatar alt="profile user" src={avatarUrl} sx={{ width: 120, height: 120 }} />
           <Typography variant="h5" id="modal-title">
             用户名
