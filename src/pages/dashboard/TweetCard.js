@@ -69,7 +69,7 @@ const TweetCard = ({tweet, increaseHotCount, hotCount, comment}) => {
                     {
                         isTokenReady && (
                             <Avatar
-                                src={`https://avatar.cloudepot.cn/api/${senderUID}?token=${encodedToken}`}
+                                src={`https://avatar.cloudepot.cn/api/avatar/${senderUID}?token=${encodedToken}`}
                                 alt={`${name}'s avatar`}
                                 sx={{
                                     mr: 1,

@@ -96,7 +96,7 @@ const Profile = () => {
     if (token) {
       axios
         .get(
-          `https://avatar.cloudepot.cn/api/${userId}?token=${encodeURIComponent(
+          `https://avatar.cloudepot.cn/api/avatar/${userId}?token=${encodeURIComponent(
             token
           )}`
         )
@@ -165,7 +165,7 @@ const Profile = () => {
               boxShadow: theme.customShadows.z16,
               borderRadius: "12px",
               width: "450px",
-              height: "400px",
+              height: "420px",
               opacity: 0.72,
               outline: "none",
               p: 2,
@@ -199,7 +199,7 @@ const Profile = () => {
                 opacity: 0.9 //添加opacity属性
               }}
             />
-            <Typography variant="h5" id="modal-title">
+            <Typography variant="h3" id="modal-title">
               用户名
             </Typography>
             <Button
