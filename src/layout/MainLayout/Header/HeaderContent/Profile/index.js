@@ -92,8 +92,6 @@ const Profile = () => {
     window.location.reload();
   };
 
-  
-
   useEffect(() => {
     if (token) {
       axios
@@ -168,13 +166,17 @@ const Profile = () => {
               borderRadius: "12px",
               width: "450px",
               height: "400px",
+              opacity: 0.72,
               outline: "none",
               p: 2,
               display: "flex",
-              opacity: 0.72,
               flexDirection: "column",
               alignItems: "center",
-              gap: 2
+              gap: 2,
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('')",
+              backgroundSize: "cover",
+              backgroundPosition: "center"
             }}
           >
             <IconButton
@@ -191,8 +193,11 @@ const Profile = () => {
             <Avatar
               alt="profile user"
               src={avatarUrl}
-              sx={{ width: 240, height: 240, opacity: 0.9, //添加opacity属性
-            }}
+              sx={{
+                width: 240,
+                height: 240,
+                opacity: 0.9 //添加opacity属性
+              }}
             />
             <Typography variant="h5" id="modal-title">
               用户名
