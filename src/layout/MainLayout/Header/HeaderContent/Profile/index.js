@@ -129,7 +129,7 @@ const Profile = () => {
                 onClick={handleToggle}
             >
                 <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
-    <Avatar alt="profile user" src={avatarUrl} sx={{ width: 32, height: 32 }} />
+                <Avatar alt="profile user" src={avatarUrl} sx={{ width: 32, height: 32 }} onClick={handleAvatarClick} />
                     <Typography variant="subtitle1">用户名</Typography>
                 </Stack>
             </ButtonBase>
