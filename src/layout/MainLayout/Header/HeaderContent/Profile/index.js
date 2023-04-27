@@ -133,6 +133,45 @@ const Profile = () => {
                     <Typography variant="subtitle1">用户名</Typography>
                 </Stack>
             </ButtonBase>
+
+            <Modal
+        open={isModalOpen}
+        onClose={handleModalClose}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'background.default',
+            boxShadow: theme.customShadows.z16,
+            borderRadius: '12px',
+            width: '300px',
+            height: '300px',
+            outline: 'none',
+            p: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 2,
+          }}
+        >
+          <IconButton aria-label="close modal" onClick={handleModalClose} sx={{ position: 'absolute', top: '8px', right: '8px' }}>
+            <Close />
+          </IconButton>
+          <Avatar alt="profile user" src={avatarUrl} sx={{ width: 120, height: 120 }} />
+          <Typography variant="h5" id="modal-title">
+            用户名
+          </Typography>
+          <Typography variant="body1" id="modal-description">
+            更换头像
+          </Typography>
+        </Box>
+      </Modal>
+      
             <Popper
                 placement="bottom-end"
                 open={open}
