@@ -81,7 +81,6 @@ const Profile = () => {
 
   const [userInfo, setUserInfo] = useState({ PhoneNumber: "", Nickname: "" });
 
-
   const handleAvatarClick = () => {
     setIsModalOpen(true);
   };
@@ -120,7 +119,7 @@ const Profile = () => {
     if (token) {
       // Convert userId to a 12-byte hexadecimal string
       // const hexUserId = userId.padStart(24, '0');
-  
+
       axios
         .get(
           `https://avatar.cloudepot.cn/api/userinfo/${userId}?token=${encodeURIComponent(
@@ -135,7 +134,6 @@ const Profile = () => {
         });
     }
   }, [token, userId]);
-  
 
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -219,19 +217,19 @@ const Profile = () => {
               src={avatarUrl}
               sx={{
                 width: 240,
-                height: 240,
+                height: 240
               }}
             />
             <Typography variant="h3" id="modal-title">
-            {userInfo.Nickname}
+              {userInfo.Nickname}
             </Typography>
             <TextField
-  variant="outlined"
-  id="modal-introduction"
-  defaultValue={userInfo.Introduction}
-  onBlur={(e) => updateIntroduction(e.target.value)}
-  fullWidth
-/>
+              variant="outlined"
+              id="modal-introduction"
+              defaultValue={userInfo.Introduction}
+              onBlur={(e) => updateIntroduction(e.target.value)}
+              fullWidth
+            />
 
             <Button
               variant="outlined"
@@ -310,9 +308,11 @@ const Profile = () => {
                             </ButtonBase>
 
                             <Stack>
-                              <Typography variant="h6">{userInfo.Nickname}</Typography>
+                              <Typography variant="h6">
+                                {userInfo.Nickname}
+                              </Typography>
                               <Typography variant="body2" color="textSecondary">
-                               {userInfo.Introduction}
+                                {userInfo.Introduction}
                               </Typography>
                             </Stack>
                           </Stack>
