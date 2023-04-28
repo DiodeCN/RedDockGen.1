@@ -311,7 +311,7 @@ const Profile = () => {
                             <Stack>
                               <Typography variant="h6">{userInfo.Nickname}</Typography>
                               <Typography variant="body2" color="textSecondary">
-                                个人简介
+                               {userInfo.Introduction}
                               </Typography>
                             </Stack>
                           </Stack>
