@@ -23,7 +23,6 @@ const LoginStatus = () => {
                         sessionStorage.removeItem('token');
                         
                         // 将 response.status 写入浏览器缓存
-                        localStorage.setItem('responseStatus', "你被封号啦");
                         
                         navigate('/404');
                     } else {
@@ -37,7 +36,6 @@ const LoginStatus = () => {
                     // 清除缓存并导航至 404 页面
                     localStorage.removeItem('token');
                     sessionStorage.removeItem('token');
-                    localStorage.setItem('responseStatus', "你被封号啦");
                     navigate('/404');
                 }
             } else {
