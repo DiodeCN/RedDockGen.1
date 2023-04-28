@@ -189,7 +189,7 @@ const Profile = () => {
               boxShadow: theme.customShadows.z16,
               borderRadius: "12px",
               width: "450px",
-              height: "420px",
+              height: "450px",
               outline: "none",
               p: 2,
               display: "flex",
