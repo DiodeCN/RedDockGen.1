@@ -222,7 +222,7 @@ const Profile = () => {
               }}
             />
             <Typography variant="h3" id="modal-title">
-              用户名
+            {userInfo.nickname}
             </Typography>
             <Button
               variant="outlined"
@@ -250,7 +250,7 @@ const Profile = () => {
             sx={{ width: 38, height: 38 }}
             onClick={handleAvatarClick}
           />
-          <Typography variant="subtitle1">用户名</Typography>
+          <Typography variant="subtitle1">{userInfo.nickname}</Typography>
         </Stack>
       </ButtonBase>
 
@@ -309,7 +309,7 @@ const Profile = () => {
                             </ButtonBase>
 
                             <Stack>
-                              <Typography variant="h6">用户名</Typography>
+                              <Typography variant="h6">{userInfo.nickname}</Typography>
                               <Typography variant="body2" color="textSecondary">
                                 个人简介
                               </Typography>
