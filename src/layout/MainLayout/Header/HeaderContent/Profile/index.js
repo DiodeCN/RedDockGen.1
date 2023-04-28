@@ -241,14 +241,6 @@ const Profile = () => {
             >
               上传头像
             </Button>
-            <Button
-              variant="outlined"
-              size="small"
-              onClick={handleAvatarClick}
-              sx={{ width: "100%" }}
-            >
-              修改签名
-            </Button>
           </Box>
         </Modal>
 
