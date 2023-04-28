@@ -238,7 +238,7 @@ const Profile = () => {
               onClick={handleAvatarClick}
               sx={{ width: "100%" }}
             >
-              随机头像
+              修改签名
             </Button>
           </Box>
         </Modal>
