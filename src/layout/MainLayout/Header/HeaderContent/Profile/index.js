@@ -225,9 +225,14 @@ const Profile = () => {
             <Typography variant="h3" id="modal-title">
             {userInfo.Nickname}
             </Typography>
-            <Typography variant="h5" id="modal-title">
-            {userInfo.Introduction}
-            </Typography>
+            <TextField
+  variant="outlined"
+  id="modal-introduction"
+  defaultValue={userInfo.Introduction}
+  onBlur={(e) => updateIntroduction(e.target.value)}
+  fullWidth
+/>
+
             <Button
               variant="outlined"
               size="small"
