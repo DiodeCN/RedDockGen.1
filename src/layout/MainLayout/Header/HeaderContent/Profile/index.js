@@ -190,7 +190,6 @@ const Profile = () => {
               borderRadius: "12px",
               width: "450px",
               height: "420px",
-              opacity: 0.72,
               outline: "none",
               p: 2,
               display: "flex",
@@ -220,7 +219,6 @@ const Profile = () => {
               sx={{
                 width: 240,
                 height: 240,
-                opacity: 0.9 //添加opacity属性
               }}
             />
             <Typography variant="h3" id="modal-title">
