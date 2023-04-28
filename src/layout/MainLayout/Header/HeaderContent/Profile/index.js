@@ -224,6 +224,9 @@ const Profile = () => {
             <Typography variant="h3" id="modal-title">
             {userInfo.Nickname}
             </Typography>
+            <Typography variant="h5" id="modal-title">
+            {userInfo.Introduction}
+            </Typography>
             <Button
               variant="outlined"
               size="small"
