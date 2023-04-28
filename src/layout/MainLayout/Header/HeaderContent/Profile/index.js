@@ -78,7 +78,7 @@ const Profile = () => {
   const [isTokenReady, setIsTokenReady] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [userInfo, setUserInfo] = useState({ phoneNumber: "", nickname: "" });
+  const [userInfo, setUserInfo] = useState({ PhoneNumber: "", Nickname: "" });
 
 
   const handleAvatarClick = () => {
@@ -222,7 +222,7 @@ const Profile = () => {
               }}
             />
             <Typography variant="h3" id="modal-title">
-            {userInfo.nickname}
+            {userInfo.Nickname}
             </Typography>
             <Button
               variant="outlined"
@@ -250,7 +250,7 @@ const Profile = () => {
             sx={{ width: 38, height: 38 }}
             onClick={handleAvatarClick}
           />
-          <Typography variant="subtitle1">{userInfo.nickname}</Typography>
+          <Typography variant="subtitle1">{userInfo.Nickname}</Typography>
         </Stack>
       </ButtonBase>
 
@@ -309,7 +309,7 @@ const Profile = () => {
                             </ButtonBase>
 
                             <Stack>
-                              <Typography variant="h6">{userInfo.nickname}</Typography>
+                              <Typography variant="h6">{userInfo.Nickname}</Typography>
                               <Typography variant="body2" color="textSecondary">
                                 个人简介
                               </Typography>
