@@ -3,6 +3,8 @@ import { TextField, Button, Box } from '@mui/material';
 import { useTheme } from "@mui/material/styles"; // Add this import
 
 const ChangeInformation = ({ userInfo, updateUserInfo }) => {
+
+    
   const [newUserInfo, setNewUserInfo] = React.useState(userInfo);
   const theme = useTheme(); // Add this line to use the theme
 
