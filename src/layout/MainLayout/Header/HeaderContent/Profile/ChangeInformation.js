@@ -19,7 +19,7 @@ const ChangeInformation = ({ userInfo, updateUserInfo }) => {
     updateUserInfo(newUserInfo);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (token) {
       axios
         .get(
