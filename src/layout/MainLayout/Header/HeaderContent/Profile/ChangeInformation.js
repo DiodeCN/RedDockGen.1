@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Box,Avatar } from '@mui/material';
+import { TextField, Button, Box, Avatar, Grid } from '@mui/material';
 import { useTheme } from "@mui/material/styles"; // Add this import
 import axios from "axios";
 
@@ -41,57 +41,68 @@ const ChangeInformation = ({ userInfo, updateUserInfo }) => {
 
   return (
     <Box
-    sx={{
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      backgroundColor: "background.default",
-      boxShadow: theme.customShadows.z16,
-      borderRadius: "12px",
-      width: "450px",
-      height: "450px",
-      outline: "none",
-      p: 2,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      gap: 2,
-      backgroundImage:
-        "linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('')",
-      backgroundSize: "cover",
-      backgroundPosition: "center"
-    }}
-  >
-    <Box>
-    <Avatar
-              alt="profile user"
-              src={avatarUrl}
-              sx={{
-                width: 240,
-                height: 240
-              }}
-            />
-      <TextField
-        label="Nickname"
-        name="Nickname"
-        value={newUserInfo.Nickname}
-        onChange={handleChange}
-        fullWidth
-      />
-      <TextField
-        label="Introduction"
-        name="Introduction"
-        value={newUserInfo.Introduction}
-        onChange={handleChange}
-        fullWidth
-      />
-      <Button variant="outlined" onClick={handleSubmit}>
-        更新信息
-      </Button>
-    </Box>
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        backgroundColor: "background.default"
+      }}
+    >
+      <Grid
+        container
+        spacing={2}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        sx={{
+          boxShadow: theme.customShadows.z16,
+          borderRadius: "12px",
+          width: "450px",
+          p: 2,
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('')",
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
+      >
+        <Grid item>
+          <Avatar
+            alt="profile user"
+            src={avatarUrl}
+            sx={{
+              width: 240,
+              height: 240
+            }}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Nickname"
+            name="Nickname"
+            value={newUserInfo.Nickname}
+            onChange={handleChange}
+            fullWidth
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Introduction"
+            name="Introduction"
+            value={newUserInfo.Introduction}
+            onChange={handleChange}
+            fullWidth
+          />
+        </Grid>
+        <Grid item>
+          <Button variant="outlined" onClick={handleSubmit}>
+            更新信息
+          </Button>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
+  
 
 export default ChangeInformation;
