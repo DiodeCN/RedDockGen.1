@@ -181,7 +181,7 @@ const Profile = () => {
           aria-describedby="modal-description"
           onClick={(e) => e.stopPropagation()}
         >
-       <ChangeInformation userInfo={userInfo} updateUserInfo={updateUserInfo} />
+<ChangeInformation userInfo={userInfo} updateUserInfo={updateUserInfo} closeModal={handleModalClose} />
         </Modal>
 
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
