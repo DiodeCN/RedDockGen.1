@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Box } from '@mui/material';
+import { TextField, Button, Box,Avatar } from '@mui/material';
 import { useTheme } from "@mui/material/styles"; // Add this import
 import axios from "axios";
 
 const ChangeInformation = ({ userInfo, updateUserInfo }) => {
-
+  const [avatarUrl, setAvatarUrl] = useState(null);
   const token = sessionStorage.getItem("token") || localStorage.getItem("token")
   const userId = sessionStorage.getItem("uid");
 
@@ -64,6 +64,14 @@ const ChangeInformation = ({ userInfo, updateUserInfo }) => {
     }}
   >
     <Box>
+    <Avatar
+              alt="profile user"
+              src={avatarUrl}
+              sx={{
+                width: 240,
+                height: 240
+              }}
+            />
       <TextField
         label="Nickname"
         name="Nickname"
