@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button, Box } from '@mui/material';
 import { useTheme } from "@mui/material/styles"; // Add this import
+import axios from "axios";
 
 const ChangeInformation = ({ userInfo, updateUserInfo }) => {
 
@@ -17,6 +18,26 @@ const ChangeInformation = ({ userInfo, updateUserInfo }) => {
   const handleSubmit = () => {
     updateUserInfo(newUserInfo);
   };
+
+  React.useEffect(() => {
+    if (token) {
+      axios
+        .get(
+          `https://avatar.cloudepot.cn/api/avatar/${userId}?token=${encodeURIComponent(
+            token
+          )}`
+        )
+        .then((response) => {
+          setAvatarUrl(response.request.responseURL);
+        })
+        .catch((error) => {
+          console.log("Error fetching avatar:", error);
+        })
+        .finally(() => {
+          setIsTokenReady(true);
+        });
+    }
+  }, [token, userId]);
 
   return (
     <Box
