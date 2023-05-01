@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Box, Avatar, Grid } from '@mui/material';
-import { useTheme } from "@mui/material/styles"; // Add this import
+import { TextField, Button, Box, Avatar, Grid, Modal, IconButton } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
 import axios from "axios";
+import CloseIcon from '@mui/icons-material/Close';
 
-const ChangeInformation = ({ userInfo, updateUserInfo }) => {
+const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
   const [avatarUrl, setAvatarUrl] = useState(null);
   const token = sessionStorage.getItem("token") || localStorage.getItem("token")
   const userId = sessionStorage.getItem("uid");
 
   const [newUserInfo, setNewUserInfo] = React.useState(userInfo);
-  const theme = useTheme(); // Add this line to use the theme
+  const theme = useTheme();
 
   const handleChange = (e) => {
     setNewUserInfo({ ...newUserInfo, [e.target.name]: e.target.value });
@@ -32,77 +33,90 @@ const ChangeInformation = ({ userInfo, updateUserInfo }) => {
         })
         .catch((error) => {
           console.log("Error fetching avatar:", error);
-        })
-        .finally(() => {
-          setIsTokenReady(true);
         });
     }
   }, [token, userId]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh",
-        backgroundColor: "background.default"
-      }}
+    <Modal
+      open={true}
+      onClose={closeModal}
+      aria-labelledby="change-information-modal"
+      aria-describedby="change-information-modal-description"
     >
-      <Grid
-        container
-        spacing={2}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
+      <Box
         sx={{
-          boxShadow: theme.customShadows.z16,
-          borderRadius: "12px",
-          width: "450px",
-          p: 2,
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('')",
-          backgroundSize: "cover",
-          backgroundPosition: "center"
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
         }}
       >
-        <Grid item>
-          <Avatar
-            alt="profile user"
-            src={avatarUrl}
-            sx={{
-              width: 240,
-              height: 240
-            }}
-          />
+        <Grid
+          container
+          spacing={2}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          sx={{
+            boxShadow: theme.customShadows.z16,
+            p: 2,
+            backgroundSize: "cover",
+            width: "450px",
+            backgroundPosition: "center",
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255), rgba(255,255,255)), url('')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            borderRadius: theme.shape.borderRadius,
+          }}
+        >
+          <Grid item>
+            <IconButton
+              aria-label="close"
+              onClick={closeModal}
+              sx={{ position: "absolute", top: 0, right: 0, background: "rgba(0,0,0,0.1)", color: "black" }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <Avatar
+              alt="profile user"
+              src={avatarUrl}
+              sx={{
+                width: 240,
+                height: 240,
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              label="Nickname"
+              name="Nickname"
+              value={newUserInfo.Nickname}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              label="Introduction"
+              name="Introduction"
+              value={newUserInfo.Introduction}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item>
+            <Button variant="outlined" onClick={handleSubmit}>
+              更新信息
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item>
-          <TextField
-            label="Nickname"
-            name="Nickname"
-            value={newUserInfo.Nickname}
-            onChange={handleChange}
-            fullWidth
-          />
-        </Grid>
-        <Grid item>
-          <TextField
-            label="Introduction"
-            name="Introduction"
-            value={newUserInfo.Introduction}
-            onChange={handleChange}
-            fullWidth
-          />
-        </Grid>
-        <Grid item>
-          <Button variant="outlined" onClick={handleSubmit}>
-            更新信息
-          </Button>
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </Modal>
   );
 };
-  
 
 export default ChangeInformation;
