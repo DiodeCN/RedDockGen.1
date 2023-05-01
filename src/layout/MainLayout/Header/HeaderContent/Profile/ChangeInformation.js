@@ -108,12 +108,21 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
               fullWidth
             />
           </Grid>
-          <Grid item>
-            <Button variant="outlined" onClick={handleSubmit}>
-              更新信息
-            </Button>
-          </Grid>
-        </Grid>
+          <Grid item container spacing={2}>
+  <Grid item xs={6}>
+    <Button variant="outlined" onClick={handleSubmit} fullWidth>
+      更新信息
+    </Button>
+  </Grid>
+  <Grid item xs={6}>
+    <Button variant="outlined" color="error" onClick={closeModal} fullWidth>
+      取消修改
+    </Button>
+  </Grid>
+</Grid>
+</Grid>
+
+
       </Box>
     </Modal>
   );
