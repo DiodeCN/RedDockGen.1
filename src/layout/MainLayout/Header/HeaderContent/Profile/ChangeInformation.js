@@ -4,7 +4,9 @@ import { useTheme } from "@mui/material/styles"; // Add this import
 
 const ChangeInformation = ({ userInfo, updateUserInfo }) => {
 
-    
+  const token = sessionStorage.getItem("token") || localStorage.getItem("token")
+  const userId = sessionStorage.getItem("uid");
+
   const [newUserInfo, setNewUserInfo] = React.useState(userInfo);
   const theme = useTheme(); // Add this line to use the theme
 
