@@ -20,12 +20,8 @@ import {
   Tab,
   Tabs,
   Typography,
-  Modal,
-  Button,
-  TextField
-} from "@mui/material";
+  Modal} from "@mui/material";
 
-import { Close } from "@mui/icons-material";
 
 // project import
 import MainCard from "components/MainCard";
@@ -34,7 +30,6 @@ import ProfileTab from "./ProfileTab";
 import SettingTab from "./SettingTab";
 
 // assets
-import avatar1 from "assets/images/users/avatar-1.png";
 import {
   LogoutOutlined,
   SettingOutlined,
