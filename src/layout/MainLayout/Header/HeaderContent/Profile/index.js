@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import axios from "axios";
 import { useRef, useState, useEffect } from "react";
+import ChangeInformation from './ChangeInformation';
+
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -88,6 +90,11 @@ const Profile = () => {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
+
+  const updateUserInfo = (newUserInfo) => {
+    setUserInfo(newUserInfo);
+  };
+  
 
   const handleLogout = async () => {
     sessionStorage.clear();
@@ -178,68 +185,7 @@ const Profile = () => {
           aria-describedby="modal-description"
           onClick={(e) => e.stopPropagation()}
         >
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              backgroundColor: "background.default",
-              boxShadow: theme.customShadows.z16,
-              borderRadius: "12px",
-              width: "450px",
-              height: "450px",
-              outline: "none",
-              p: 2,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 2,
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('')",
-              backgroundSize: "cover",
-              backgroundPosition: "center"
-            }}
-          >
-            <IconButton
-              aria-label="close modal"
-              onClick={(event) => {
-                event.stopPropagation();
-                handleModalClose();
-              }}
-              sx={{ position: "absolute", top: "8px", right: "8px" }}
-            >
-              <Close />
-            </IconButton>
-
-            <Avatar
-              alt="profile user"
-              src={avatarUrl}
-              sx={{
-                width: 240,
-                height: 240
-              }}
-            />
-            <Typography variant="h3" id="modal-title">
-              {userInfo.Nickname}
-            </Typography>
-            <TextField
-              variant="outlined"
-              id="modal-introduction"
-              defaultValue={userInfo.Introduction}
-              onBlur={(e) => updateIntroduction(e.target.value)}
-              fullWidth
-            />
-
-            <Button
-              variant="outlined"
-              size="small"
-              onClick={handleAvatarClick}
-              sx={{ width: "100%" }}
-            >
-              上传头像
-            </Button>
-          </Box>
+        <ChangeInformation userInfo={userInfo} updateUserInfo={updateUserInfo} />
         </Modal>
 
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
