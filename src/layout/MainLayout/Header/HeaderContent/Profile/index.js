@@ -92,9 +92,10 @@ const Profile = () => {
   };
 
   const updateUserInfo = (newUserInfo) => {
-    setUserInfo(newUserInfo);
-  };
-  
+  setUserInfo(newUserInfo);
+};
+
+
 
   const handleLogout = async () => {
     sessionStorage.clear();
@@ -185,7 +186,7 @@ const Profile = () => {
           aria-describedby="modal-description"
           onClick={(e) => e.stopPropagation()}
         >
-        <ChangeInformation userInfo={userInfo} updateUserInfo={updateUserInfo} />
+       <ChangeInformation userInfo={userInfo} updateUserInfo={updateUserInfo} />
         </Modal>
 
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
