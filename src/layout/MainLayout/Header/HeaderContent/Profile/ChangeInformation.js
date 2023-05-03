@@ -45,7 +45,6 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
       aria-describedby="change-information-modal-description"
     >
 
-
       <Box
         sx={{
           display: "flex",
