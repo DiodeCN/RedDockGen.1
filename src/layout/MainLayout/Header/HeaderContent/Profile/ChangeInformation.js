@@ -46,7 +46,6 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
     >
 
 
-      
       <Box
         sx={{
           display: "flex",
