@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Box, Avatar, Grid, Modal, IconButton } from '@mui/material';
 import { useTheme } from "@mui/material/styles";
-import axios from "axios";
 import CloseIcon from '@mui/icons-material/Close';
+import fetchAvatar from '../../../../../utils/fetchAvatar';
 
 const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
   const [avatarUrl, setAvatarUrl] = useState(null);
-  const token = sessionStorage.getItem("token") || localStorage.getItem("token")
   const userId = sessionStorage.getItem("uid");
 
   const [newUserInfo, setNewUserInfo] = React.useState(userInfo);
@@ -21,21 +20,18 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
   };
 
   useEffect(() => {
-    if (token) {
-      axios
-        .get(
-          `https://avatar.cloudepot.cn/api/avatar/${userId}?token=${encodeURIComponent(
-            token
-          )}`
-        )
-        .then((response) => {
-          setAvatarUrl(response.request.responseURL);
-        })
-        .catch((error) => {
-          console.log("Error fetching avatar:", error);
-        });
-    }
-  }, [token, userId]);
+    const fetchAndSetAvatar = async () => {
+      const cachedAvatarUrl = sessionStorage.getItem(`avatar_${userId}`);
+      if (cachedAvatarUrl) {
+        setAvatarUrl(cachedAvatarUrl);
+      } else {
+        const fetchedAvatarUrl = await fetchAvatar(userId);
+        setAvatarUrl(fetchedAvatarUrl);
+      }
+    };
+
+    fetchAndSetAvatar();
+  }, [userId]);
 
   return (
     <Modal
@@ -109,21 +105,21 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
             />
           </Grid>
           <Grid item container spacing={2}>
-  <Grid item xs={6}>
-    <Button variant="outlined" onClick={handleSubmit} fullWidth>
-      更新信息
-    </Button>
-  </Grid>
-  <Grid item xs={6}>
-    <Button variant="outlined" color="error" onClick={closeModal} fullWidth>
-      取消修改
-    </Button>
-  </Grid>
-</Grid>
-</Grid>
-
-
+            <Grid item xs={6}>
+              <Button variant="outlined" onClick={handleSubmit} fullWidth>
+                更新信息
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Button variant="outlined" color="error" onClick={closeModal} fullWidth>
+                取消修改
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
       </Box>
+   
+
     </Modal>
   );
 };
