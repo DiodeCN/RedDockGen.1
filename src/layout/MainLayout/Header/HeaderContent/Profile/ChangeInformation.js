@@ -24,7 +24,7 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
     if (token) {
       axios
         .get(`https://avatar.cloudepot.cn/api/avatar/${userId}`, {
-          headers: { "Authorization": token }
+          headers: { "Authorization": sessionStorage.getItem("token") || localStorage.getItem("token")}
         })
         .then((response) => {
           setAvatarUrl(response.request.responseURL);
