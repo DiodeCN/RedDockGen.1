@@ -22,10 +22,10 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
 
   useEffect(() => {
     if (token && userId !== "") {
-      console.log(token,userId);
+      // console.log(token,userId);
       axios
         .get(`https://avatar.cloudepot.cn/api/avatar/${userId}`, {
-          headers: { "Authorization": token}
+          headers: { "Token": token}
         })
         .then((response) => {
           setAvatarUrl(response.request.responseURL);
