@@ -21,7 +21,6 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
   };
 
   useEffect(() => {
-    console.log("token:", token);
     if (token) {
       axios
         .get(`https://avatar.cloudepot.cn/api/avatar/${userId}`, {
@@ -34,7 +33,7 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
           console.log("Error fetching avatar:", error);
         });
     }
-  }, [token, userId]);
+  }, []);
 
   return (
     <Modal
