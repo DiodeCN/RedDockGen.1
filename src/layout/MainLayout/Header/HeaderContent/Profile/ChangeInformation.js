@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
   const [avatarUrl, setAvatarUrl] = useState(null);
-  const token = sessionStorage.getItem("token") || localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
   const userId = sessionStorage.getItem("uid");
 
   const [newUserInfo, setNewUserInfo] = React.useState(userInfo);
@@ -21,10 +21,11 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
   };
 
   useEffect(() => {
-    if (token) {
+    if (token && userId !== "") {
+      console.log(token,userId);
       axios
         .get(`https://avatar.cloudepot.cn/api/avatar/${userId}`, {
-          headers: { "Authorization": sessionStorage.getItem("token") || localStorage.getItem("token")}
+          headers: { "Authorization": token}
         })
         .then((response) => {
           setAvatarUrl(response.request.responseURL);
@@ -32,8 +33,8 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
         .catch((error) => {
           console.log("Error fetching avatar:", error);
         });
-    }
-  }, []);
+      }
+  }, [userId]); 
 
   return (
     <Modal
