@@ -21,6 +21,7 @@ const ChangeInformation = ({ userInfo, updateUserInfo, closeModal }) => {
   };
 
   useEffect(() => {
+    console.log("token:", token);
     if (token) {
       axios
         .get(`https://avatar.cloudepot.cn/api/avatar/${userId}`, {
